@@ -12,17 +12,13 @@ class Card < ActiveRecord::Base
 
   def self.deal_cards
     players = Player.all.pluck(:id)
-    card_count = Card.count.where(answer: 'f')
+    card_count = Card.where(answer: 'f').count
     x = 1
-    until x >= card_count do
+    until x > card_count do
       players.each do |player|
         cards = Card.where(answer: 'f', player_id: [nil, ''])
         if cards != nil
           cards.order('RANDOM()').limit(1).update({:player_id => player})
-          # cards.each do |card|
-          #   card.update({:player_id => player})
-          #   break
-          # end
           x += 1
         else
           x = card_count
