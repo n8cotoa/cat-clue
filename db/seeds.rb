@@ -1,7 +1,9 @@
 #Seeds database with spaces and cards
+
+#builds borad game spaces in database
 Space.destroy_all
 letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+numbers = ['1', '1', '1', '1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 coordinates = []
 letters.each do |letter|
   numbers.each do |number|
@@ -25,5 +27,19 @@ coordinates.each do |coordinate|
     if room.include?(coordinate)
       space.update({:space_type => rooms_hash[index]})
     end
+  end
+end
+
+#builds cards in database
+Card.destroy_all
+card_type = ['Cat', 'Weapon', 'Room']
+cats_card = ['cat1', 'cat2', 'cat3', 'cat4', 'cat5', 'cat6']
+weapons_card = ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5', 'weapon6']
+rooms_card = ['Kitchen', 'Ballroom', 'Conservatory', 'Dining Room', 'Cellar', 'library', 'Lounge', 'Hall', 'Study']
+card_category =[cats_card, weapons_card, rooms_card]
+
+card_category.each_with_index do |cards, index|
+  cards.each do |card|
+    Card.create({:card_type => card_type[index], :card_name => card, :answer => 'f', :player_id => nil, :image => ''})
   end
 end
