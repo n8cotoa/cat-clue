@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: cat_clue_development
+
+test:
+  adapter: postgresql
+  database: cat_clue_test
