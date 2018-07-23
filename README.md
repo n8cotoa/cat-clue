@@ -10,6 +10,7 @@ A recreation of the classic game 'Clue' using Ruby, Sinatra, and ActiveRecord
 ## Setup Requirements
 
 1. Clone the repo
+1. Delete Gemfile.lock
 1. Run '$bundle install' to bundle Gemfile dependencies
 1. Recreate the database using '$rake:db migrate'
 1. Install the game database by running '$rake db:seed'

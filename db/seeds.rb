@@ -43,3 +43,10 @@ card_category.each_with_index do |cards, index|
     Card.create({:card_type => card_type[index], :card_name => card, :answer => 'f', :player_id => nil, :image => ''})
   end
 end
+
+#bulds example players
+Player.destroy_all #destroys all player info in database
+players = ['Player 1', 'Player 2', 'Player 3', 'Player 4']
+players.each do |player|
+  Player.create({:name => player, :dice_roll => nil, :guess => nil})
+end

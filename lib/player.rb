@@ -1,5 +1,6 @@
 class Player < ActiveRecord::Base
 
+
   def end_turn
     players = Player.all
     last_player = players.last
@@ -11,4 +12,5 @@ class Player < ActiveRecord::Base
     self.update({:turn => 'f'})
     next_player.update({:turn => 't'})
   end
+
 end
