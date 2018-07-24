@@ -8,8 +8,8 @@ class Player < ActiveRecord::Base
     else
       next_player = players.find(self.id + 1)
     end
-    self.update({:turn => 'f'})
-    next_player.update({:turn => 't'})
+    self.update(turn: 'f')
+    next_player.update(turn: 't')
   end
 
   def roll_dice
