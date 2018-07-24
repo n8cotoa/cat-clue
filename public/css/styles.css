@@ -7,16 +7,18 @@
   background-image: url('../img/clue_board.svg');
   background-size: cover;
   box-sizing: border-box;
-  height: 50%;
-  width: 50%;
+  height: 100%;
+  width: 100%;
 }
 
 .row {
   flex-wrap: nowrap;
-  height: 5vw;
+  box-sizing: border-box;
+  height: 10vw;
 }
 
 .col {
-  width: 5vw;
+  box-sizing: border-box;
+  width: 10vw;
 
 }
