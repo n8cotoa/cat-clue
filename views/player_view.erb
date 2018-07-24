@@ -1,5 +1,7 @@
 <%= @player.name %>
 
-<a href="/players/<%= player.id %>/roll"><span class="btn btn-primary">Roll Dice</span></a>
+<a href="/players/<%= @player.id %>/roll"><span class="btn btn-primary">Roll Dice</span></a>
 
-<a href="/players/<%= player.id/checkcards"><span class="btn btn-success">Check Cards</span></a>
+<a href="/players/<%= @player.id/checkcards"><span class="btn btn-success">Check Cards</span></a>
+
+<p>Roll: <%= @player.dice_roll %> </p>

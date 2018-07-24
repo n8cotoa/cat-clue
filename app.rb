@@ -5,6 +5,7 @@ require 'pry'
 
 get('/') do
   @spaces = Space.all
+  @player = Player.all.where(turn: 't').first
   erb(:board)
 end
 
@@ -12,3 +13,6 @@ get('/board/:coordinates') do
   redirect '/'
 end
 
+post '/players/<%= @player.id %>/roll' do
+  
+end

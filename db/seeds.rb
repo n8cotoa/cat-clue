@@ -48,5 +48,6 @@ end
 Player.destroy_all #destroys all player info in database
 players = ['Player 1', 'Player 2', 'Player 3', 'Player 4']
 players.each do |player|
-  Player.create({:name => player, :dice_roll => nil, :guess => nil})
+  Player.create({:name => player, :dice_roll => nil, :guess => nil, :turn => 'f'})
+  Player.all.first.update({:turn => 't'})
 end
