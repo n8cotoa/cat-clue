@@ -1,12 +1,12 @@
-<form class="container" action="/board/:coordinates" method="post">
+<form class="" action="/board/:coordinates" method="post">
   <div class="board">
     <% x = 1 %>
     <div class="row">
       <% @spaces.each do |space| %>
-        <div class="col">
-          <a href="board/<%= space.coordinates %>" name="space.id"><%= space.coordinates %></a>
+
+          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
           <% x += 1 %>
-        </div>
+
         <% break if x > 10 %>
       <% end %>
     </div>
@@ -16,9 +16,9 @@
       <% @spaces.each do |space| %>
       <% x += 1 %>
       <% next if x <= 10 %>
-        <div class="col">
-          <a href="board/<%= space.coordinates %>" name="space.id"><%= space.coordinates %></a>
-        </div>
+        
+          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+
         <% break if x >= 20 %>
       <% end %>
     </div>

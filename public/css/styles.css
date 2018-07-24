@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.board {
+  background-image: url('../img/clue_board.svg');
+  background-size: cover;
+  box-sizing: border-box;
+  height: 50%;
+  width: 50%;
+}
+
+.row {
+  flex-wrap: nowrap;
+  height: 5vw;
+}
+
+.col {
+  width: 5vw;
+
+}
