@@ -1,4 +1,6 @@
 #Seeds database with spaces and cards
+
+#builds borad game spaces in database
 Space.destroy_all
 letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
@@ -26,4 +28,25 @@ coordinates.each do |coordinate|
       space.update({:space_type => rooms_hash[index]})
     end
   end
+end
+
+#builds cards in database
+Card.destroy_all
+card_type = ['Cat', 'Weapon', 'Room']
+cats_card = ['Ms. Scarlet', 'Colonel Mustard', 'Mr. Green', 'Mrs. Peacock', 'Mrs. White', 'Professor Plum']
+weapons_card = ['Strong Catnip', 'Cardboard Box', 'Vase', 'Bread', 'Dog', 'Knife']
+rooms_card = ['Kitchen', 'Ballroom', 'Conservatory', 'Dining Room', 'Cellar', 'library', 'Lounge', 'Hall', 'Study']
+card_category =[cats_card, weapons_card, rooms_card]
+
+card_category.each_with_index do |cards, index|
+  cards.each do |card|
+    Card.create({:card_type => card_type[index], :card_name => card, :answer => 'f', :player_id => nil, :image => ''})
+  end
+end
+
+#bulds example players
+Player.destroy_all #destroys all player info in database
+players = ['Player 1', 'Player 2', 'Player 3', 'Player 4']
+players.each do |player|
+  Player.create({:name => player, :dice_roll => nil, :guess => nil})
 end
