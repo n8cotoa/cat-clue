@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_23_195757) do
+ActiveRecord::Schema.define(version: 2018_07_23_232615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2018_07_23_195757) do
     t.boolean "turn"
     t.integer "dice_roll"
     t.string "guess"
+    t.string "name"
   end
 
   create_table "spaces", force: :cascade do |t|
