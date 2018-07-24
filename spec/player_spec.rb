@@ -17,11 +17,11 @@ describe(Player) do
       expect(player1.dice_roll).to be_instance_of(Integer)
     end
   end
+  
   context '#player_guess_match' do
     it 'will take the players guesses and return a card if unkown to player' do
       Card.murder
-      Card.deal_cards
-      binding.pry
+      Card.deal_cardsß
       player1 = Player.all.first
       cat_card = Card.where(answer: 'f', card_type: 'Cat').where.not(player_id: player1.id).first
       weapon_card = Card.where(answer: 'f', card_type: 'Weapon').where.not(player_id: player1.id).first
