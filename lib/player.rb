@@ -18,9 +18,10 @@ class Player < ActiveRecord::Base
     roll
   end
 
-<<<<<<< HEAD
   def move
     all_spaces = Space.all
+    moves_left = self.dice_roll
+
     # if moves_left < dice_roll
       # allow player to click one away (no diagonally)
       # if they move
@@ -29,7 +30,18 @@ class Player < ActiveRecord::Base
       # if they move onto a door space, they have the option to click on the room to enter it.
         # then they can guess (change view to guess form)
     #
-=======
+  end
+
+  def available_spaces
+    available_spaces = []
+    binding.pry
+    current_coords = Space.find_by(player_id: self.id).coordinates
+    blanks = Space.where(space_type: 'space', player_id: nil)
+    doors = Space.where('keywords LIKE ?', '%Door')
+    binding.pry
+    available_spaces
+  end
+
   def save_guess(cat, weapon, room)
     cat_id = cat.id
     weapon_id = weapon.id
@@ -50,7 +62,6 @@ class Player < ActiveRecord::Base
       end
     end
     returned_card
->>>>>>> d76f1e6e8079d40b87f4e0475af79f3a2c66a66b
   end
 
 end
