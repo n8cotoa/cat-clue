@@ -31,4 +31,18 @@ describe(Player) do
       expect(player1.dice_roll).to be_between(1,6).inclusive
     end
   end
+  
+  context '#player_guess_match' do
+    it 'will take the players guesses and return a card if unkown to player' do
+      Card.murder
+      Card.deal_cardsß
+      player1 = Player.all.first
+      cat_card = Card.where(answer: 'f', card_type: 'Cat').where.not(player_id: player1.id).first
+      weapon_card = Card.where(answer: 'f', card_type: 'Weapon').where.not(player_id: player1.id).first
+      room_card = Card.where(answer: 'f', card_type: 'Room').where.not(player_id: player1.id).first
+      player_guess = [cat_card, weapon_card, room_card]
+      player_match = player1.player_guess_match(cat_card, weapon_card, room_card)
+      expect(player_guess).to include(player_match)
+    end
+  end
 end
