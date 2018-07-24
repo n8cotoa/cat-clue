@@ -11,3 +11,4 @@ end
 get('/board/:coordinates') do
   redirect '/'
 end
+
