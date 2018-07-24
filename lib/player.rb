@@ -26,8 +26,9 @@ class Player < ActiveRecord::Base
       if cards_to_pick_from.include?(guess)
         returned_card = guess
         break
+      else
+        returned_card = false
       end
-      break
     end
     returned_card
   end
