@@ -3,7 +3,7 @@ class Card < ActiveRecord::Base
   def self.murder
     card_types = ['Cat', 'Weapon', 'Room']
     card_types.each do |card_type|
-      card = Card.order('RANDOM()').limit(1).where(card_type: card_type)
+      card = Card.order(Arel.sql('RANDOM()')).limit(1).where(card_type: card_type)
       card.update({:answer => "t"})
     end
   end
@@ -16,7 +16,7 @@ class Card < ActiveRecord::Base
       players.each do |player|
         cards = Card.where(answer: 'f', player_id: [nil, ''])
         if cards != nil
-          cards.order('RANDOM()').limit(1).update({:player_id => player})
+          cards.order(Arel.sql('RANDOM()')).limit(1).update({:player_id => player})
           x += 1
         else
           x = card_count
