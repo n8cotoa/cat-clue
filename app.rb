@@ -5,11 +5,9 @@ require 'pry'
 
 get('/') do
   @spaces = Space.all
-  @space = "A1"
   erb(:board)
 end
 
 get('/board/:coordinates') do
-  binding.pry
   redirect '/'
 end
