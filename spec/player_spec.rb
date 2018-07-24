@@ -10,4 +10,11 @@ describe(Player) do
       expect(Player.find(player3.id).turn).to(eq(true))
     end
   end
+  context '#roll_dice' do
+    it 'will return a number between 1 and 6' do
+      player1 = Player.create({:dice_roll => nil})
+      player1.roll_dice
+      expect(player1.dice_roll).to be_instance_of(Integer)
+    end
+  end
 end
