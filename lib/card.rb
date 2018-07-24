@@ -1,7 +1,5 @@
 class Card < ActiveRecord::Base
 
-
-
   def self.murder
     card_types = ['Cat', 'Weapon', 'Room']
     card_types.each do |card_type|
