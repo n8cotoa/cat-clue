@@ -21,10 +21,10 @@ class Player < ActiveRecord::Base
   def player_guess_match(cat, weapon, room)
     player_guess = [cat, weapon, room]
     cards_to_pick_from = Card.where(answer: 'f').where.not(player_id: self.id)
-    returned_card = []
+    returned_card = nil
     player_guess.shuffle.each do |guess|
       if cards_to_pick_from.include?(guess)
-        returned_card.push(guess)
+        returned_card = guess
         break
       end
       break

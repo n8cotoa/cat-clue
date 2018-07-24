@@ -25,7 +25,9 @@ describe(Player) do
       cat_card = Card.where(answer: 'f', card_type: 'Cat').where.not(player_id: player1.id).first
       weapon_card = Card.where(answer: 'f', card_type: 'Weapon').where.not(player_id: player1.id).first
       room_card = Card.where(answer: 'f', card_type: 'Room').where.not(player_id: player1.id).first
-      expect(player1.player_guess_match(cat_card, weapon_card, room_card)).to(eq([]))
+      player_guess = [cat_card, weapon_card, room_card]
+      player_match = player1.player_guess_match(cat_card, weapon_card, room_card)
+      expect(player_guess).to include(player_match)
     end
   end
 end
