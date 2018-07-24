@@ -18,4 +18,16 @@ class Player < ActiveRecord::Base
     roll
   end
 
+  def move
+    all_spaces = Space.all
+    # if moves_left < dice_roll
+      # allow player to click one away (no diagonally)
+      # if they move
+        # increase moves_left
+      # end
+      # if they move onto a door space, they have the option to click on the room to enter it.
+        # then they can guess (change view to guess form)
+    #
+  end
+
 end

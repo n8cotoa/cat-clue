@@ -1,3 +1,5 @@
+require('pry')
+
 #Seeds database with spaces and cards
 
 #builds borad game spaces in database
@@ -19,6 +21,7 @@ library = ['E9', 'E10', 'F9', 'F10']
 lounge = ['I1', 'I2', 'J1', 'J2']
 hall = ['I5', 'I6', 'J5', 'J6']
 study = ['I9', 'I10', 'J9', 'J10']
+doors = ['C1', 'F3', 'J3', 'A4', 'D6', 'I7', 'C9', 'E8', 'J8']
 rooms = [kitchen, ballroom, conservatory, dining, cellar, library, lounge, hall, study]
 rooms_hash = {0 => 'Kitchen', 1 => 'Ballroom', 2 => 'Conservatory', 3 => 'Dining Room', 4 => 'Cellar', 5 => 'Library', 6 => 'Lounge', 7 => 'Hall', 8 => 'Study'}
 coordinates.each do |coordinate|
@@ -26,6 +29,13 @@ coordinates.each do |coordinate|
   rooms.each_with_index do |room, index|
     if room.include?(coordinate)
       space.update({:space_type => rooms_hash[index]})
+    end
+  end
+  if doors.include?(coordinate)
+    doors.each_with_index do |door, index|
+      if door == coordinate
+        space.update(:space_type => rooms_hash[index] + ' Door')
+      end
     end
   end
 end
