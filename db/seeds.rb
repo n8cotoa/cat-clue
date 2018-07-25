@@ -45,7 +45,7 @@ Card.destroy_all
 card_type = ['Cat', 'Weapon', 'Room']
 cats_card = ['Miss Scarlet', 'Colonel Mustard', 'Mr. Green', 'Mrs. Peacock', 'Mrs. White', 'Professor Plum']
 weapons_card = ['Strong Catnip', 'Cardboard Box', 'Vase', 'Bread', 'Dog', 'Knife']
-rooms_card = ['Laboratory', 'Library', 'Kitchen', 'Dining Room', 'Cellar', 'Hall', 'Study', 'Pool Room', 'Lounge']
+rooms_card = ['Laboratory', 'Library', 'Kitchen', 'Dining Room', 'Hall', 'Study', 'Pool Room', 'Lounge']
 card_category =[cats_card, weapons_card, rooms_card]
 
 card_category.each_with_index do |cards, index|
