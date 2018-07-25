@@ -56,10 +56,11 @@ get '/players/:id/checkcards' do
 end
 
 get '/players/:id/make_guess' do
-
   current_player = Player.all.where(turn: 't').first
-  binding.pry
   @room = Space.find_by(player_id: current_player)
+  @cats = Card.all.where(card_type: 'Cat')
+  @weapons = Card.all.where(card_type: 'Weapon')
+  binding.pry
   erb(:make_guess)
 end
 
