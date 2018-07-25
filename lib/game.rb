@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
     Card.all.each do |card|
       card.update({:answer => 'f', :player_id => nil})
     end
-    Space.all.each do |space|
+    Space.where.not(player_id: nil).each do |space|
       space.update({:player_id => nil})
     end
   end
@@ -19,7 +19,7 @@ class Game < ActiveRecord::Base
     Card.all.each do |card|
       card.update({:answer => 'f', :player_id => nil})
     end
-    Space.all.each do |space|
+    Space.where.not(player_id: nil).each do |space|
       space.update({:player_id => nil})
     end
   end

@@ -17,7 +17,7 @@ class Player < ActiveRecord::Base
     self.update({:dice_roll => roll})
     roll
   end
-
+  
   def move
     all_spaces = Space.all
     moves_left = self.dice_roll
