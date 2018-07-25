@@ -31,13 +31,13 @@ class Player < ActiveRecord::Base
     study = ['I9', 'I10', 'J9', 'J10']
     rooms = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
     guess_allowed = false ## this will be the return value?
-    new_space = Space.where(coordinates: new_coords)
+    new_space = Space.where(coordinates: new_coords).first
     doors = Space.where('space_type LIKE ?', '%Door').all
     original_space = Space.find_by(player_id: self.id)
     original_coords = original_space.coordinates
     available_spaces = self.available_spaces(original_coords)
     roll = self.dice_roll
-    if (roll > 0) && (available_spaces.include?(new_space) == true)
+    if (roll > 0) && (available_spaces.include?(new_space.coordinates))
       if (doors.include?(original_space) == true) && (rooms.include?(new_space) == true) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
         new_space.update(player_id: self.id)
         original_space.update(player_id: nil)
@@ -72,7 +72,7 @@ class Player < ActiveRecord::Base
       space_y_axis = space.coordinates.split('', 2)[1]
       ## (if on the y axis it's 1 away, and the x-axis is the same) XOR vice versa
       if (((player_y_axis.to_i - space_y_axis.to_i).abs == 1) && (letters.index(player_x_axis) == letters.index(space_x_axis))) ^ (((letters.index(player_x_axis) - letters.index(space_x_axis)).abs == 1) && (player_y_axis.to_i == space_y_axis.to_i))
-        available_spaces.push(space)
+        available_spaces.push(space.coordinates)
       end
     end
     available_spaces
