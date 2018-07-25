@@ -18,19 +18,18 @@ class Player < ActiveRecord::Base
     roll
   end
 
-  def move
+  def move(new_space_coord)
     all_spaces = Space.all
-    moves_left = self.dice_roll
+    moves = 1
     original_space = Space.find_by(player_id: self.id)
     original_space.update(player_id: nil)
     current_coords = original_space.coordinates
-    # if moves_left < dice_roll ## should dice_roll decrease after every click or should moves_left?
+    if moves < dice_roll
     # if moves_left < dice_roll
-      # allow player to click one away (no diagonally)
       # if they move
         # increase moves_left
       # end
-      # if they move onto a door space, they have the option to click on the room to enter it.
+      # if they move onto a door space, they have the option to click on the room to enter it, and then guess
         # then they can guess (change view to guess form)
         ###
         # click on space
