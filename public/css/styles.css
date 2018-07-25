@@ -1,8 +1,8 @@
 .board {
   background-image: url('../img/clue_board.svg');
   background-size: cover;
-  height: 60vw;
-  width: 60vw;
+  height: 70vw;
+  width: 70vw;
   margin: 0;
   padding: 0;
 }
@@ -11,14 +11,14 @@
   flex-wrap: nowrap;
   box-sizing: border-box;
   margin: 0;
-  height: 6vw;
+  height: 7vw;
 }
 
 .col {
   padding: 0;
-  width: 6vw;
+  width: 7vw;
 }
 
 .game {
-  margin-left: 20vw;
+  margin-left: 15vw;
 }
