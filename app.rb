@@ -46,3 +46,15 @@ get '/players/:id/roll' do
   player.roll_dice
   redirect back
 end
+
+get '/players/:id/checkcards' do
+  id = params[:id].to_i
+  @player = Player.find(id)
+  @player_cards = Card.all.where(player_id: @player.id)
+  erb(:checkcards)
+end
+
+get '/players/next' do
+  #call on the player next
+  redirect back
+end
