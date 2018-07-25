@@ -49,7 +49,6 @@ describe(Player) do
   context ('#available_spaces') do
     it('will check available_spaces which a player can move to') do
       player = Player.find_by(name: 'Player 1')
-      ## What is player id at space E4?
       space = Space.find_by(coordinates: 'E4')
       space.update(player_id: player.id)
       adjacent_spaces = []
