@@ -30,7 +30,7 @@ class Player < ActiveRecord::Base
     study = ['I9', 'I10', 'J9', 'J10']
     rooms = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
     guess_allowed = false ## this will be the return value?
-    new_space = Space.find(coordinates: new_coords)
+    new_space = Space.find_by(coordinates: new_coords)
     doors = Space.where('space_type LIKE ?', '%Door').all
     original_space = Space.find_by(player_id: self.id)
     original_space.update(player_id: nil)
