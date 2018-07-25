@@ -1,11 +1,6 @@
-.container {
-box-sizing: border-box;
-}
-
 .board {
   background-image: url('../img/clue_board.svg');
   background-size: cover;
-  box-sizing: border-box;
   height: 60vw;
   width: 60vw;
   margin: 0;
@@ -20,15 +15,10 @@ box-sizing: border-box;
 }
 
 .col {
-  box-sizing: border-box;
   padding: 0;
   width: 6vw;
 }
 
-a {
-  box-sizing: border-box;
-}
-
 .game {
-  margin: auto;
+  margin-left: 20vw;
 }
