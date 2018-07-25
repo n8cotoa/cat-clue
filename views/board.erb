@@ -1,97 +1,99 @@
-<form class="game" action="/board/:coordinates" method="post">
-  <div class="board">
-    <% x = 1 %>
-    <div class="row">
-      <% @spaces.each do |space| %>
+<div class="">
+  <form class="" action="/board/:coordinates" method="post">
+    <div class="board">
+      <% x = 1 %>
+      <div class="row">
+        <% @spaces.each do |space| %>
+            <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+            <% x += 1 %>
+          <% break if x > 10 %>
+        <% end %>
+      </div>
+      <% x = 0 %>
+
+      <div class="row">
+        <% @spaces.each do |space| %>
+        <% x += 1 %>
+        <% next if x <= 10 %>
+
+            <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+
+          <% break if x >= 20 %>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <% @spaces.each do |space| %>
+        <% x += 1 %>
+        <% next if x <= 40 %>
+            <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+          <% break if x >= 50 %>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <% @spaces.each do |space| %>
+        <% x += 1 %>
+        <% next if x <= 80 %>
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-          <% x += 1 %>
-        <% break if x > 10 %>
-      <% end %>
-    </div>
-    <% x = 0 %>
+          <% break if x >= 90 %>
+        <% end %>
+      </div>
 
-    <div class="row">
-      <% @spaces.each do |space| %>
-      <% x += 1 %>
-      <% next if x <= 10 %>
-
+      <div class="row">
+        <% @spaces.each do |space| %>
+        <% x += 1 %>
+        <% next if x <= 130 %>
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+          <% break if x >= 140 %>
+        <% end %>
+      </div>
 
-        <% break if x >= 20 %>
-      <% end %>
-    </div>
-
-    <div class="row">
-      <% @spaces.each do |space| %>
-      <% x += 1 %>
-      <% next if x <= 40 %>
+      <div class="row">
+        <% @spaces.each do |space| %>
+        <% x += 1 %>
+        <% next if x <= 190 %>
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-        <% break if x >= 50 %>
-      <% end %>
-    </div>
+          <% break if x >= 200 %>
+        <% end %>
+      </div>
 
-    <div class="row">
-      <% @spaces.each do |space| %>
-      <% x += 1 %>
-      <% next if x <= 80 %>
-        <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-        <% break if x >= 90 %>
-      <% end %>
-    </div>
+      <div class="row">
+        <% @spaces.each do |space| %>
+        <% x += 1 %>
+        <% next if x <= 260 %>
+          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+          <% break if x >= 270 %>
+        <% end %>
+      </div>
 
-    <div class="row">
-      <% @spaces.each do |space| %>
-      <% x += 1 %>
-      <% next if x <= 130 %>
-        <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-        <% break if x >= 140 %>
-      <% end %>
-    </div>
+      <div class="row">
+        <% @spaces.each do |space| %>
+        <% x += 1 %>
+        <% next if x <= 340 %>
+          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+          <% break if x >= 350 %>
+        <% end %>
+      </div>
 
-    <div class="row">
-      <% @spaces.each do |space| %>
-      <% x += 1 %>
-      <% next if x <= 190 %>
-        <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-        <% break if x >= 200 %>
-      <% end %>
-    </div>
+      <div class="row">
+        <% @spaces.each do |space| %>
+        <% x += 1 %>
+        <% next if x <= 430 %>
+          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+          <% break if x >= 440 %>
+        <% end %>
+      </div>
 
-    <div class="row">
-      <% @spaces.each do |space| %>
-      <% x += 1 %>
-      <% next if x <= 260 %>
-        <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-        <% break if x >= 270 %>
-      <% end %>
-    </div>
+      <div class="row">
+        <% @spaces.each do |space| %>
+        <% x += 1 %>
+        <% next if x <= 530 %>
+          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+          <% break if x >= 540 %>
+        <% end %>
+      </div>
 
-    <div class="row">
-      <% @spaces.each do |space| %>
-      <% x += 1 %>
-      <% next if x <= 340 %>
-        <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-        <% break if x >= 350 %>
-      <% end %>
     </div>
-
-    <div class="row">
-      <% @spaces.each do |space| %>
-      <% x += 1 %>
-      <% next if x <= 430 %>
-        <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-        <% break if x >= 440 %>
-      <% end %>
-    </div>
-
-    <div class="row">
-      <% @spaces.each do |space| %>
-      <% x += 1 %>
-      <% next if x <= 530 %>
-        <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-        <% break if x >= 540 %>
-      <% end %>
-    </div>
-
-  </div>
-</form>
+  </form>
+</div>
