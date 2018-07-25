@@ -9,6 +9,5 @@ get('/') do
 end
 
 get('/board/:coordinates') do
-  binding.pry
   redirect '/'
 end

@@ -14,11 +14,20 @@
 .row {
   flex-wrap: nowrap;
   box-sizing: border-box;
+  margin: 0;
   height: 10vw;
 }
 
 .col {
   box-sizing: border-box;
+  padding: 0;
   width: 10vw;
-
 }
+
+a {
+  box-sizing: border-box;
+}
+
+/* .game {
+  width: 80%;
+} */
