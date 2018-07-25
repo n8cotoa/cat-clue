@@ -1,5 +1,6 @@
 require 'pry'
 class Player < ActiveRecord::Base
+  validates :name, uniqueness: true
 
   def end_turn
     players = Player.all
