@@ -58,6 +58,7 @@ get '/players/:id/checkcards' do
 end
 
 get '/players/next' do
-  #call on the player next
+  current_player = Player.all.where(turn: 't').first
+  current_player.end_turn
   redirect back
 end
