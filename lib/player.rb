@@ -18,6 +18,12 @@ class Player < ActiveRecord::Base
     roll
   end
 
+  def hand
+    player_cards = []
+    player_cards.push(Card.all.where(player_id: self.id))
+    player_cards
+  end
+
   def save_guess(cat, weapon, room)
     cat_id = cat.id
     weapon_id = weapon.id
