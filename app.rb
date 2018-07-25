@@ -37,10 +37,10 @@ get('/board') do
 end
 
 get('/board/:coordinates') do
-  binding.pry
+  new_coords = params.fetch('coordinates')
   current_player = Player.all.where(turn: 't').first
+  current_player.move(new_coords)
   # current_player.move  Will update players position every click and redirect back to board
-  binding.pry
   redirect '/board'
 end
 

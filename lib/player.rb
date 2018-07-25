@@ -1,3 +1,4 @@
+require 'pry'
 class Player < ActiveRecord::Base
 
   def end_turn
@@ -30,23 +31,25 @@ class Player < ActiveRecord::Base
     study = ['I9', 'I10', 'J9', 'J10']
     rooms = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
     guess_allowed = false ## this will be the return value?
-    new_space = Space.find(coordinates: new_coords)
+    new_space = Space.where(coordinates: new_coords)
     doors = Space.where('space_type LIKE ?', '%Door').all
     original_space = Space.find_by(player_id: self.id)
-    original_space.update(player_id: nil)
     original_coords = original_space.coordinates
     available_spaces = self.available_spaces(original_coords)
     roll = self.dice_roll
-    if (roll > 0) && (available_spaces.include?(new_space))
-      if doors.include?(original_space) && rooms.include?(new_space) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
+    if (roll > 0) && (available_spaces.include?(new_space) == true)
+      if (doors.include?(original_space) == true) && (rooms.include?(new_space) == true) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
         new_space.update(player_id: self.id)
+        original_space.update(player_id: nil)
         guess_allowed = true
         roll -= 1
         self.update(dice_roll: roll)
       else ## i.e. new_space is NOT a room
-        new_space.update(player_id: self)
+        new_space.update(player_id: self.id)
+        original_space.update(player_id: nil)
         roll -= 1
         self.update(dice_roll: roll)
+
       end
     # else ## i.e. They have no rolls left or they didn't click an adjacent, available space
     end
