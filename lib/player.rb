@@ -18,23 +18,28 @@ class Player < ActiveRecord::Base
     roll
   end
 
-  def move
-    all_spaces = Space.all
-    moves = 1
+  def move(new_coords)
+    guess_allowed = false ## this will be the return value?
+    new_space = Space.find(coordinates: new_coords)
+    doors = Space.where('space_type LIKE ?', '%Door').all
     original_space = Space.find_by(player_id: self.id)
     original_space.update(player_id: nil)
-    current_coords = original_space.coordinates
-    if moves < dice_roll
-    # if moves_left < dice_roll
-      # if they move
-        # increase moves_left
-      # end
-      # if they move onto a door space, they have the option to click on the room to enter it, and then guess
-        # then they can guess (change view to guess form)
-        ###
-        # click on space
-        ## player image overlays the grid square
-    #
+    original_coords = original_space.coordinates
+    available_spaces = self.available_spaces(original_coords)
+    if (dice_roll > 0) && (available_spaces.include?(new_space))
+      if doors.include?(new_space)
+        ## guess on doors, not in room?
+        new_space.update(player_id: self.id)
+        guess_allowed = true
+        dice_roll -= 1
+      else ## i.e. new_space is NOT a door
+        new_space.update(player_id: self)
+        dice_roll -= 1
+      end
+    else ## i.e. They have no rolls left or they didn't click an adjacent, available space
+      # ?? Do we need this else?
+    end
+    guess_allowed
   end
 
   def available_spaces(current_coords) ## from the current player coords, get the spaces which are adjacent and open (blank space or blank door)
