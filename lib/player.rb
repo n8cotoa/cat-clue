@@ -18,7 +18,7 @@ class Player < ActiveRecord::Base
     roll
   end
 
-  def move(new_space_coord)
+  def move
     all_spaces = Space.all
     moves = 1
     original_space = Space.find_by(player_id: self.id)
