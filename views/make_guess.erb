@@ -1,3 +1,12 @@
 <div class="container">
-
+  <form class="" action="/players/:id/make_guess" method="post">
+    <label for="room">Room</label>
+    <select class="" name="">
+      <option value=""><%= @room.space_type %></option>
+    </select>
+    <label for="killer">Killer</label>
+    <input type="text" name="killer" value="">
+    <label for="weapon">Weapon</label>
+    <input type="text" name="weapon" value="">
+  </form>
 </div>

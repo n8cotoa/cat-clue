@@ -37,6 +37,7 @@ end
 get('/board/:coordinates') do
   current_player = Player.all.where(turn: 't').first
   # current_player.move  Will update players position every click and redirect back to board
+  binding.pry
   redirect '/board'
 end
 
@@ -52,6 +53,14 @@ get '/players/:id/checkcards' do
   @player = Player.find(id)
   @player_cards = Card.all.where(player_id: @player.id)
   erb(:checkcards)
+end
+
+get '/players/:id/make_guess' do
+
+  current_player = Player.all.where(turn: 't').first
+  binding.pry
+  @room = Space.find_by(player_id: current_player)
+  erb(:make_guess)
 end
 
 get '/players/next' do
