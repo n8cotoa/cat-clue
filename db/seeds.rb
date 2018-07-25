@@ -42,12 +42,12 @@ end
 
 #builds cards in database
 Card.destroy_all
-card_type = ['Cat', 'Weapon', 'Room']
+card_type = ['Weapon', 'Room']
 cats_card = ['Miss Scarlet', 'Colonel Mustard', 'Mr. Green', 'Mrs. Peacock', 'Mrs. White', 'Professor Plum']
 cats_img = {"Miss Scarlet" => '../img/cat_img/scarlet.png', "Colonel Mustard" => '../img/cat_img/mustard.png', "Mr. Green" => '../img/cat_img/green.png', "Mrs. Peacock" => '../img/cat_img/peacock.png', "Mrs. White" => '../img/cat_img/Mrs_White.png', "Professor Plum" => '../img/cat_img/purple.png'}
 weapons_card = ['Strong Catnip', 'Cardboard Box', 'Vase', 'Bread', 'Dog', 'Knife']
 rooms_card = ['Laboratory', 'Library', 'Kitchen', 'Dining Room', 'Hall', 'Study', 'Pool Room', 'Lounge']
-card_category =[cats_card, weapons_card, rooms_card]
+card_category =[weapons_card, rooms_card]
 
 card_category.each_with_index do |cards, index|
   cards.each do |card|
