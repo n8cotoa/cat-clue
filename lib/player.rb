@@ -18,24 +18,40 @@ class Player < ActiveRecord::Base
     roll
   end
 
-  def move
-    all_spaces = Space.all
-    moves_left = self.dice_roll
+  def move(new_coords)
+    laboratory = ['A1', 'A2', 'B1', 'B2']
+    library = ['A5', 'A6', 'B5', 'B6']
+    kitchen = ['A9', 'A10', 'B9', 'B10']
+    dining = ['E1', 'E2', 'F1', 'F2']
+    cellar = ['E5', 'E6', 'F5', 'F6']
+    hall = ['E9', 'E10', 'F9', 'F10']
+    study = ['I1', 'I2', 'J1', 'J2']
+    pool = ['I5', 'I6', 'J5', 'J6']
+    lounge = ['I9', 'I10', 'J9', 'J10']
+    rooms = laboratory + library + kitchen + dining + cellar +  hall + study + pool + lounge]
+    guess_allowed = false ## this will be the return value?
+    new_space = Space.find(coordinates: new_coords)
+    doors = Space.where('space_type LIKE ?', '%Door').all
     original_space = Space.find_by(player_id: self.id)
     original_space.update(player_id: nil)
-    current_coords = original_space.coordinates
-    # if moves_left < dice_roll ## should dice_roll decrease after every click or should moves_left?
-    # if moves_left < dice_roll
-      # allow player to click one away (no diagonally)
-      # if they move
-        # increase moves_left
-      # end
-      # if they move onto a door space, they have the option to click on the room to enter it.
-        # then they can guess (change view to guess form)
-        ###
-        # click on space
-        ## player image overlays the grid square
-    #
+    original_coords = original_space.coordinates
+    available_spaces = self.available_spaces(original_coords)
+    roll = self.dice_roll
+    if (roll > 0) && (available_spaces.include?(new_space))
+      if doors.include?(original_space) && rooms.include?(new_space) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
+        new_space.update(player_id: self.id)
+        guess_allowed = true
+        roll -= 1
+        self.update(dice_roll: roll)
+      else ## i.e. new_space is NOT a room
+        new_space.update(player_id: self)
+        roll -= 1
+        self.update(dice_roll: roll)
+      end
+    else ## i.e. They have no rolls left or they didn't click an adjacent, available space
+      # ?? Do we need this else?
+    end
+    guess_allowed
   end
 
   def available_spaces(current_coords) ## from the current player coords, get the spaces which are adjacent and open (blank space or blank door)

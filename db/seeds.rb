@@ -12,18 +12,18 @@ letters.each do |letter|
     coordinates.push(coordinate = letter + number)
   end
 end
-kitchen = ['A1', 'A2', 'B1', 'B2']
-ballroom = ['A5', 'A6', 'B5', 'B6']
-conservatory = ['A9', 'A10', 'B9', 'B10']
+laboratory = ['A1', 'A2', 'B1', 'B2']
+library = ['A5', 'A6', 'B5', 'B6']
+kitchen = ['A9', 'A10', 'B9', 'B10']
 dining = ['E1', 'E2', 'F1', 'F2']
 cellar = ['E5', 'E6', 'F5', 'F6']
-library = ['E9', 'E10', 'F9', 'F10']
-lounge = ['I1', 'I2', 'J1', 'J2']
-hall = ['I5', 'I6', 'J5', 'J6']
-study = ['I9', 'I10', 'J9', 'J10']
-doors = ['C1', 'F3', 'J3', 'A4', 'D6', 'I7', 'C9', 'E8', 'J8'] ## update this
-rooms = [kitchen, ballroom, conservatory, dining, cellar, library, lounge, hall, study] ## update this after Reese does board
-rooms_hash = {0 => 'Kitchen', 1 => 'Ballroom', 2 => 'Conservatory', 3 => 'Dining Room', 4 => 'Cellar', 5 => 'Library', 6 => 'Lounge', 7 => 'Hall', 8 => 'Study'} ## update this after Reese does board
+hall = ['E9', 'E10', 'F9', 'F10']
+study = ['I1', 'I2', 'J1', 'J2']
+pool = ['I5', 'I6', 'J5', 'J6']
+lounge = ['I9', 'I10', 'J9', 'J10']
+doors = ['C1', 'A4', 'C9', 'F3', 'D6', 'E8', 'J3', 'I7', 'J8']
+rooms = [laboratory, library, kitchen, dining, cellar, hall, study, pool, lounge]
+rooms_hash = {0 => 'Laboratory', 1 => 'Library', 2 => 'Kitchen', 3 => 'Dining Room', 4 => 'Cellar', 5 => 'Hall', 6 => 'Study', 7 => 'Pool Room', 8 => 'Lounge'}
 coordinates.each do |coordinate|
   space = Space.create({:coordinates => coordinate, :player_id => nil, :space_type => 'space'})
   rooms.each_with_index do |room, index|
@@ -45,7 +45,7 @@ Card.destroy_all
 card_type = ['Cat', 'Weapon', 'Room']
 cats_card = ['Miss Scarlet', 'Colonel Mustard', 'Mr. Green', 'Mrs. Peacock', 'Mrs. White', 'Professor Plum']
 weapons_card = ['Strong Catnip', 'Cardboard Box', 'Vase', 'Bread', 'Dog', 'Knife']
-rooms_card = ['Kitchen', 'Ballroom', 'Conservatory', 'Dining Room', 'Cellar', 'library', 'Lounge', 'Hall', 'Study']
+rooms_card = ['Laboratory', 'Library', 'Kitchen', 'Dining Room', 'Cellar', 'Hall', 'Study', 'Pool Room', 'Lounge']
 card_category =[cats_card, weapons_card, rooms_card]
 
 card_category.each_with_index do |cards, index|

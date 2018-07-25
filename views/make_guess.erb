@@ -1,0 +1,19 @@
+<div class="container">
+  <form class="" action="/players/:id/make_guess" method="post">
+    <label for="room">Room</label>
+    <input type="text" name="<%= @room.space_type %>" value="" placeholder="<%= @room.space_type %>">
+    <label for="killer">Killer</label>
+    <select name="killer" type='text' class="form-control">
+      <% @cats.each do |cat| %>
+      <option value="<%= cat.card_name %>"><%= cat.card_name %></option>
+      <% end %>
+    </select>
+    <label for="weapon">Weapon</label>
+    <select name="weapon" type='text' class="form-control">
+      <% @weapons.each do |weapon| %>
+      <option value="<%= weapon.card_name %>"><%= weapon.card_name %></option>
+      <% end %>
+    </select>
+    <button type="submit">Guess</button>
+  </form>
+</div>
