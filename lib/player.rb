@@ -19,6 +19,16 @@ class Player < ActiveRecord::Base
   end
 
   def move(new_coords)
+    laboratory = ['A1', 'A2', 'B1', 'B2']
+    library = ['A5', 'A6', 'B5', 'B6']
+    kitchen = ['A9', 'A10', 'B9', 'B10']
+    dining = ['E1', 'E2', 'F1', 'F2']
+    cellar = ['E5', 'E6', 'F5', 'F6']
+    hall = ['E9', 'E10', 'F9', 'F10']
+    study = ['I1', 'I2', 'J1', 'J2']
+    pool = ['I5', 'I6', 'J5', 'J6']
+    lounge = ['I9', 'I10', 'J9', 'J10']
+    rooms = laboratory + library + kitchen + dining + cellar +  hall + study + pool + lounge]
     guess_allowed = false ## this will be the return value?
     new_space = Space.find(coordinates: new_coords)
     doors = Space.where('space_type LIKE ?', '%Door').all
@@ -28,12 +38,12 @@ class Player < ActiveRecord::Base
     available_spaces = self.available_spaces(original_coords)
     roll = self.dice_roll
     if (roll > 0) && (available_spaces.include?(new_space))
-      if doors.include?(original_space) && rooms.include?(new_space) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true. 
+      if doors.include?(original_space) && rooms.include?(new_space) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
         new_space.update(player_id: self.id)
         guess_allowed = true
         roll -= 1
         self.update(dice_roll: roll)
-      else ## i.e. new_space is NOT a door
+      else ## i.e. new_space is NOT a room
         new_space.update(player_id: self)
         roll -= 1
         self.update(dice_roll: roll)
