@@ -1,3 +1,4 @@
+require 'pry'
 class Player < ActiveRecord::Base
 
   def end_turn
@@ -30,23 +31,29 @@ class Player < ActiveRecord::Base
     study = ['I9', 'I10', 'J9', 'J10']
     rooms = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
     guess_allowed = false ## this will be the return value?
+<<<<<<< HEAD
     new_space = Space.find_by(coordinates: new_coords)
+=======
+    new_space = Space.where(coordinates: new_coords).first
+>>>>>>> 442bbc078ba557dded22aa28030434deeeafc58b
     doors = Space.where('space_type LIKE ?', '%Door').all
     original_space = Space.find_by(player_id: self.id)
-    original_space.update(player_id: nil)
     original_coords = original_space.coordinates
     available_spaces = self.available_spaces(original_coords)
     roll = self.dice_roll
-    if (roll > 0) && (available_spaces.include?(new_space))
-      if doors.include?(original_space) && rooms.include?(new_space) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
+    if (roll > 0) && (available_spaces.include?(new_space.coordinates))
+      if (doors.include?(original_space)) && (rooms.include?(new_space.coordinates)) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
         new_space.update(player_id: self.id)
+        original_space.update(player_id: nil)
         guess_allowed = true
         roll -= 1
         self.update(dice_roll: roll)
       else ## i.e. new_space is NOT a room
-        new_space.update(player_id: self)
+        new_space.update(player_id: self.id)
+        original_space.update(player_id: nil)
         roll -= 1
         self.update(dice_roll: roll)
+
       end
     # else ## i.e. They have no rolls left or they didn't click an adjacent, available space
     end
@@ -61,15 +68,17 @@ class Player < ActiveRecord::Base
     available_spaces = []
     blanks = Space.where(space_type: 'space', player_id: nil)
     doors = Space.where('space_type LIKE ?', '%Door').all
+    rooms_and_doors = Space.where.not(space_type: 'space').all
+    rooms = rooms_and_doors - doors
     empty = Space.where(player_id: nil).all
     empty_doors = doors & empty
-    open_spaces = blanks + empty_doors
+    open_spaces = blanks + empty_doors + rooms
     open_spaces.each do |space|
       space_x_axis = space.coordinates.split('', 2)[0]
       space_y_axis = space.coordinates.split('', 2)[1]
       ## (if on the y axis it's 1 away, and the x-axis is the same) XOR vice versa
       if (((player_y_axis.to_i - space_y_axis.to_i).abs == 1) && (letters.index(player_x_axis) == letters.index(space_x_axis))) ^ (((letters.index(player_x_axis) - letters.index(space_x_axis)).abs == 1) && (player_y_axis.to_i == space_y_axis.to_i))
-        available_spaces.push(space)
+        available_spaces.push(space.coordinates)
       end
     end
     available_spaces
