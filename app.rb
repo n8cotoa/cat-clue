@@ -63,8 +63,15 @@ get '/players/:id/make_guess' do
   @room = Space.find_by(player_id: current_player)
   @cats = Card.all.where(card_type: 'Cat')
   @weapons = Card.all.where(card_type: 'Weapon')
-  binding.pry
   erb(:make_guess)
+end
+
+post '/players/:id/make_guess' do
+  @weapon = params['weapon']
+  @cat = params['killer']
+  @room = params['room']
+  binding.pry
+  redirect '/board'
 end
 
 get '/players/next' do

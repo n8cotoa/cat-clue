@@ -1,7 +1,7 @@
 <div class="container">
   <form class="" action="/players/:id/make_guess" method="post">
     <label for="room">Room</label>
-    <input type="text" name="<%= @room.space_type %>" value="" placeholder="<%= @room.space_type %>">
+    <input type="text" name="room" value="<%= @room.space_type %>" placeholder="<%= @room.space_type %>">
     <label for="killer">Killer</label>
     <select name="killer" type='text' class="form-control">
       <% @cats.each do |cat| %>
