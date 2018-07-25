@@ -38,7 +38,7 @@ class Player < ActiveRecord::Base
     available_spaces = self.available_spaces(original_coords)
     roll = self.dice_roll
     if (roll > 0) && (available_spaces.include?(new_space.coordinates))
-      if (doors.include?(original_space) == true) && (rooms.include?(new_space) == true) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
+      if (doors.include?(original_space)) && (rooms.include?(new_space.coordinates)) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
         new_space.update(player_id: self.id)
         original_space.update(player_id: nil)
         guess_allowed = true
@@ -64,9 +64,11 @@ class Player < ActiveRecord::Base
     available_spaces = []
     blanks = Space.where(space_type: 'space', player_id: nil)
     doors = Space.where('space_type LIKE ?', '%Door').all
+    rooms_and_doors = Space.where.not(space_type: 'space').all
+    rooms = rooms_and_doors - doors
     empty = Space.where(player_id: nil).all
     empty_doors = doors & empty
-    open_spaces = blanks + empty_doors
+    open_spaces = blanks + empty_doors + rooms
     open_spaces.each do |space|
       space_x_axis = space.coordinates.split('', 2)[0]
       space_y_axis = space.coordinates.split('', 2)[1]
