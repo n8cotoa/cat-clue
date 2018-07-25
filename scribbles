@@ -26,6 +26,11 @@
   <h2 name="A10" value="A10">A10</h2>
 </div>
 
+PLAYER IMAGE ON BOARD
+<% if space.player_id != nil %>
+  <% player = Player.find(space.player_id.to_i) %>
+  <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+<% end %>
 
 <!-- <div class="row"> -->
   <!-- <% loop do if x > 10 && x <= 20 %>

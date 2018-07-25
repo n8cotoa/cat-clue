@@ -43,7 +43,7 @@ end
 #builds cards in database
 Card.destroy_all
 card_type = ['Cat', 'Weapon', 'Room']
-cats_card = ['Ms. Scarlet', 'Colonel Mustard', 'Mr. Green', 'Mrs. Peacock', 'Mrs. White', 'Professor Plum']
+cats_card = ['Miss Scarlet', 'Colonel Mustard', 'Mr. Green', 'Mrs. Peacock', 'Mrs. White', 'Professor Plum']
 weapons_card = ['Strong Catnip', 'Cardboard Box', 'Vase', 'Bread', 'Dog', 'Knife']
 rooms_card = ['Laboratory', 'Library', 'Kitchen', 'Dining Room', 'Cellar', 'Hall', 'Study', 'Pool Room', 'Lounge']
 card_category =[cats_card, weapons_card, rooms_card]
@@ -63,15 +63,15 @@ players.each do |player|
 end
 
 #assign players to set spaces
-player1 = Player.find_by(name: 'Player 1')
-player2 = Player.find_by(name: 'Player 2')
-player3 = Player.find_by(name: 'Player 3')
-player4 = Player.find_by(name: 'Player 4')
-player1_start = Space.find_by(coordinates: 'H1')
-player2_start = Space.find_by(coordinates: 'A3')
-player3_start = Space.find_by(coordinates: 'C10')
-player4_start = Space.find_by(coordinates: 'J7')
-player1_start.update(player_id: player1.id)
-player2_start.update(player_id: player2.id)
-player3_start.update(player_id: player3.id)
-player4_start.update(player_id: player4.id)
+# player1 = Player.find_by(name: 'Player 1')
+# player2 = Player.find_by(name: 'Player 2')
+# player3 = Player.find_by(name: 'Player 3')
+# player4 = Player.find_by(name: 'Player 4')
+# player1_start = Space.find_by(coordinates: 'H1')
+# player2_start = Space.find_by(coordinates: 'A3')
+# player3_start = Space.find_by(coordinates: 'C10')
+# player4_start = Space.find_by(coordinates: 'J7')
+# player1_start.update(player_id: player1.id)
+# player2_start.update(player_id: player2.id)
+# player3_start.update(player_id: player3.id)
+# player4_start.update(player_id: player4.id)

@@ -18,10 +18,12 @@ post '/start/new_players' do
   player2 = params.fetch('player2')
   player3 = params.fetch('player3')
   player4 = params.fetch('player4')
-  Player.create({:name => player1, :turn => 't'})
-  Player.create({:name => player2, :turn => 'f'})
-  Player.create({:name => player3, :turn => 'f'})
-  Player.create({:name => player4, :turn => 'f'})
+  piece_img = {"Miss Scarlet" => url('../img/pieces/red.png'), "Colonel Mustard" => url('../img/pieces/yellow.png'), "Mr. Green" => url('../img/pieces/green.png'), "Mrs. Peacock" => url('../img/pieces/blue.png'), "Mrs. White" => url('../img/pieces/white.png'), "Professor Plum" => url('../img/pieces/purple.png')}
+  Player.create({:name => player1, :turn => 't', :image => piece_img[player1]})
+  Player.create({:name => player2, :turn => 'f', :image => piece_img[player2]})
+  Player.create({:name => player3, :turn => 'f', :image => piece_img[player3]})
+  Player.create({:name => player4, :turn => 'f', :image => piece_img[player4]})
+  Player.place_player
   Card.murder
   Card.deal_cards
   redirect '/board'
@@ -35,6 +37,7 @@ get('/board') do
 end
 
 get('/board/:coordinates') do
+  binding.pry
   current_player = Player.all.where(turn: 't').first
   # current_player.move  Will update players position every click and redirect back to board
   binding.pry
@@ -65,6 +68,7 @@ get '/players/:id/make_guess' do
 end
 
 get '/players/next' do
-  #call on the player next
+  current_player = Player.all.where(turn: 't').first
+  current_player.end_turn
   redirect back
 end

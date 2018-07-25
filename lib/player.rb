@@ -98,4 +98,13 @@ class Player < ActiveRecord::Base
     returned_card
   end
 
+  def self.place_player
+    start_positions = ['H1', 'A3', 'D10', 'J7']
+    index = 0
+    Player.all.each do |player|
+      Space.where(coordinates: start_positions[index]).update(:player_id => player.id)
+      index += 1
+    end
+  end
+
 end

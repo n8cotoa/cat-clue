@@ -6,6 +6,9 @@
 
 <a href="/players/<%= @player.id%>/make_guess"><span class="btn btn-success">Make Guess</span></a>
 
+<a href="/players/next"><span class = "btn btn-danger">End Turn</span></a>
+
+
 <p>Cards in Hand: <%= @cards.count %></p>
 
 <p>Roll: <%= @player.dice_roll %> </p>
