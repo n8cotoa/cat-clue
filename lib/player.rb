@@ -17,7 +17,7 @@ class Player < ActiveRecord::Base
     self.update({:dice_roll => roll})
     roll
   end
-  
+
   def move
     all_spaces = Space.all
     moves_left = self.dice_roll
@@ -80,6 +80,11 @@ class Player < ActiveRecord::Base
       end
     end
     returned_card
+  end
+
+  def piece_img
+     piece_img = {"Miss Scarlet" => img_path, "Colonel Mustard" => img_path, "Mr. Green" => img_path, "Mrs. Peacock" => img, "Mrs. White" => img_path, "Professor Plum" => img}
+     return piece_img.fetch(self.name)
   end
 
 end

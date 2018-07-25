@@ -18,10 +18,11 @@ post '/start/new_players' do
   player2 = params.fetch('player2')
   player3 = params.fetch('player3')
   player4 = params.fetch('player4')
-  Player.create({:name => player1, :turn => 't'})
-  Player.create({:name => player2, :turn => 'f'})
-  Player.create({:name => player3, :turn => 'f'})
-  Player.create({:name => player4, :turn => 'f'})
+  piece_img = {"Miss Scarlet" => img_path, "Colonel Mustard" => img_path, "Mr. Green" => img_path, "Mrs. Peacock" => img, "Mrs. White" => img_path, "Professor Plum" => img}
+  Player.create({:name => player1, :turn => 't', :image => piece_img[player1]})
+  Player.create({:name => player2, :turn => 'f', :image => piece_img[player2]})
+  Player.create({:name => player3, :turn => 'f', :image => piece_img[player3]})
+  Player.create({:name => player4, :turn => 'f', :image => piece_img[player4]})
   Card.murder
   Card.deal_cards
   redirect '/board'
