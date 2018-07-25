@@ -26,15 +26,17 @@ class Player < ActiveRecord::Base
     original_space.update(player_id: nil)
     original_coords = original_space.coordinates
     available_spaces = self.available_spaces(original_coords)
-    if (dice_roll > 0) && (available_spaces.include?(new_space))
-      if doors.include?(new_space)
-        ## guess on doors, not in room?
+    roll = self.dice_roll
+    if (roll > 0) && (available_spaces.include?(new_space))
+      if doors.include?(original_space) && rooms.include?(new_space) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true. 
         new_space.update(player_id: self.id)
         guess_allowed = true
-        dice_roll -= 1
+        roll -= 1
+        self.update(dice_roll: roll)
       else ## i.e. new_space is NOT a door
         new_space.update(player_id: self)
-        dice_roll -= 1
+        roll -= 1
+        self.update(dice_roll: roll)
       end
     else ## i.e. They have no rolls left or they didn't click an adjacent, available space
       # ?? Do we need this else?
