@@ -82,9 +82,13 @@ class Player < ActiveRecord::Base
     returned_card
   end
 
-  def piece_img
-     piece_img = {"Miss Scarlet" => img_path, "Colonel Mustard" => img_path, "Mr. Green" => img_path, "Mrs. Peacock" => img, "Mrs. White" => img_path, "Professor Plum" => img}
-     return piece_img.fetch(self.name)
+  def self.place_player
+    start_positions = ['H1', 'A3', 'C10', 'J7']
+    index = 0
+    Player.all.each do |player|
+      Space.where(coordinates: start_positions[index]).update(:player_id => player.id)
+      index += 1
+    end
   end
 
 end

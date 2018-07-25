@@ -7,7 +7,7 @@
             <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
               <% if space.player_id != nil %>
                 <% player = Player.find(space.player_id.to_i) %>
-                <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+                <img class="player-piece" src="<%= player.image %>" alt="Player Image">
               <% end %>
             </div></a>
             <% x += 1 %>
@@ -23,7 +23,7 @@
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
             <% if space.player_id != nil %>
               <% player = Player.find(space.player_id.to_i) %>
-              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+              <img class="player-piece" src="<%= player.image %>" alt="Player Image">
             <% end %>
           </div></a>
           <% break if x >= 20 %>
@@ -37,7 +37,7 @@
             <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
               <% if space.player_id != nil %>
                 <% player = Player.find(space.player_id.to_i) %>
-                <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+                <img class="player-piece" src="<%= player.image %>" alt="Player Image">
               <% end %>
             </div></a>
           <% break if x >= 50 %>
@@ -51,7 +51,7 @@
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
             <% if space.player_id != nil %>
               <% player = Player.find(space.player_id.to_i) %>
-              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+              <img class="player-piece" src="<%= player.image %>" alt="Player Image">
             <% end %>
           </div></a>
           <% break if x >= 90 %>
@@ -65,7 +65,7 @@
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
             <% if space.player_id != nil %>
               <% player = Player.find(space.player_id.to_i) %>
-              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+              <img class="player-piece" src="<%= player.image %>" alt="Player Image">
             <% end %>
           </div></a>
           <% break if x >= 140 %>
@@ -79,7 +79,7 @@
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
             <% if space.player_id != nil %>
               <% player = Player.find(space.player_id.to_i) %>
-              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+              <img class="player-piece" src="<%= player.image %>" alt="Player Image">
             <% end %>
           </div></a>
           <% break if x >= 200 %>
@@ -93,7 +93,7 @@
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
             <% if space.player_id != nil %>
               <% player = Player.find(space.player_id.to_i) %>
-              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+              <img class="player-piece" src="<%= player.image %>" alt="Player Image">
             <% end %></div></a>
           <% break if x >= 270 %>
         <% end %>
@@ -106,7 +106,7 @@
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
             <% if space.player_id != nil %>
               <% player = Player.find(space.player_id.to_i) %>
-              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+              <img class="player-piece" src="<%= player.image %>" alt="Player Image">
             <% end %></div></a>
           <% break if x >= 350 %>
         <% end %>
@@ -119,7 +119,7 @@
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
             <% if space.player_id != nil %>
               <% player = Player.find(space.player_id.to_i) %>
-              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+              <img class="player-piece" src="<%= player.image %>" alt="Player Image">
             <% end %>
           </div></a>
           <% break if x >= 440 %>
@@ -133,7 +133,7 @@
           <a href="board/<%= space.coordinates %>" name="space.id"><div class="col">
             <% if space.player_id != nil %>
               <% player = Player.find(space.player_id.to_i) %>
-              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+              <img class="player-piece" src="<%= player.image %>" alt="Player Image">
             <% end %>
           </div></a>
           <% break if x >= 540 %>
