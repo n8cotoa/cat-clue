@@ -71,9 +71,11 @@ get '/players/:id/make_guess' do
 end
 
 post '/players/:id/make_guess' do
+  current_player = Player.all.where(turn: 't').first
   @weapon = params['weapon']
   @cat = params['killer']
   @room = params['room']
+  response = current_player.player_guess_match(@cat, @weapon, @room)
   binding.pry
   redirect '/board'
 end

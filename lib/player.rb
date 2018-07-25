@@ -32,11 +32,7 @@ class Player < ActiveRecord::Base
     study = ['I9', 'I10', 'J9', 'J10']
     rooms = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
     guess_allowed = false ## this will be the return value?
-<<<<<<< HEAD
-    new_space = Space.find_by(coordinates: new_coords)
-=======
     new_space = Space.where(coordinates: new_coords).first
->>>>>>> 442bbc078ba557dded22aa28030434deeeafc58b
     doors = Space.where('space_type LIKE ?', '%Door').all
     original_space = Space.find_by(player_id: self.id)
     original_coords = original_space.coordinates
@@ -96,9 +92,13 @@ class Player < ActiveRecord::Base
     player_guess = [cat, weapon, room]
     cards_to_pick_from = Card.where(answer: 'f').where.not(player_id: self.id)
     returned_card = nil
+
     player_guess.shuffle.each do |guess|
-      if cards_to_pick_from.include?(guess)
+      guess_card = Card.find_by(card_name: guess)
+      binding.pry
+      if cards_to_pick_from.include?(guess_card)
         returned_card = guess
+        binding.pry
         break
       else
         returned_card = false
