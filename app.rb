@@ -19,14 +19,18 @@ post '/start/new_players' do
   player3 = params.fetch('player3')
   player4 = params.fetch('player4')
   piece_img = {"Miss Scarlet" => url('../img/pieces/red.png'), "Colonel Mustard" => url('../img/pieces/yellow.png'), "Mr. Green" => url('../img/pieces/green.png'), "Mrs. Peacock" => url('../img/pieces/blue.png'), "Mrs. White" => url('../img/pieces/white.png'), "Professor Plum" => url('../img/pieces/purple.png')}
-  Player.create({:name => player1, :turn => 't', :image => piece_img[player1]})
-  Player.create({:name => player2, :turn => 'f', :image => piece_img[player2]})
-  Player.create({:name => player3, :turn => 'f', :image => piece_img[player3]})
-  Player.create({:name => player4, :turn => 'f', :image => piece_img[player4]})
-  Player.place_player
-  Card.murder
-  Card.deal_cards
-  redirect '/board'
+  new_player1 = Player.new({:name => player1, :turn => 't', :image => piece_img[player1]})
+  new_player2 = Player.new({:name => player2, :turn => 'f', :image => piece_img[player2]})
+  new_player3 = Player.new({:name => player3, :turn => 'f', :image => piece_img[player3]})
+  new_player4 = Player.new({:name => player4, :turn => 'f', :image => piece_img[player4]})
+  if (new_player1.save) && (new_player2.save) && (new_player3.save) && (new_player4.save)
+    Player.place_player
+    Card.murder
+    Card.deal_cards
+    redirect '/board'
+  else
+    erb(:errors)
+  end
 end
 
 get('/board') do
