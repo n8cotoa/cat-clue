@@ -49,7 +49,14 @@ describe(Player) do
   context ('#available_spaces') do
     it('will check available_spaces which a player can move to') do
       player = Player.find_by(name: 'Player 1')
-      player.available_spaces
+      ## What is player id at space E4?
+      space = Space.find_by(coordinates: 'E4')
+      space.update(player_id: player.id)
+      adjacent_spaces = []
+      Space.where("coordinates = 'D4' OR coordinates = 'E3' OR coordinates = 'F4'").each do |adj_space|
+        adjacent_spaces.push(adj_space)
+      end
+      expect(player.available_spaces(space.coordinates)).to(eq(adjacent_spaces))
     end
   end
 end
