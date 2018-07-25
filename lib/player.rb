@@ -19,16 +19,16 @@ class Player < ActiveRecord::Base
   end
 
   def move(new_coords)
-    laboratory = ['A1', 'A2', 'B1', 'B2']
-    library = ['A5', 'A6', 'B5', 'B6']
-    kitchen = ['A9', 'A10', 'B9', 'B10']
-    dining = ['E1', 'E2', 'F1', 'F2']
+    kitchen = ['A1', 'A2', 'B1', 'B2']
+    hall = ['A5', 'A6', 'B5', 'B6']
+    lounge = ['A9', 'A10', 'B9', 'B10']
+    library = ['E1', 'E2', 'F1', 'F2']
     cellar = ['E5', 'E6', 'F5', 'F6']
-    hall = ['E9', 'E10', 'F9', 'F10']
-    study = ['I1', 'I2', 'J1', 'J2']
-    pool = ['I5', 'I6', 'J5', 'J6']
-    lounge = ['I9', 'I10', 'J9', 'J10']
-    rooms = laboratory + library + kitchen + dining + cellar +  hall + study + pool + lounge]
+    pool = ['E9', 'E10', 'F9', 'F10']
+    laboratory = ['I1', 'I2', 'J1', 'J2']
+    dining = ['I5', 'I6', 'J5', 'J6']
+    study = ['I9', 'I10', 'J9', 'J10']
+    rooms = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
     guess_allowed = false ## this will be the return value?
     new_space = Space.find(coordinates: new_coords)
     doors = Space.where('space_type LIKE ?', '%Door').all
@@ -48,8 +48,7 @@ class Player < ActiveRecord::Base
         roll -= 1
         self.update(dice_roll: roll)
       end
-    else ## i.e. They have no rolls left or they didn't click an adjacent, available space
-      # ?? Do we need this else?
+    # else ## i.e. They have no rolls left or they didn't click an adjacent, available space
     end
     guess_allowed
   end

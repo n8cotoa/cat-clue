@@ -12,18 +12,18 @@ letters.each do |letter|
     coordinates.push(coordinate = letter + number)
   end
 end
-laboratory = ['A1', 'A2', 'B1', 'B2']
-library = ['A5', 'A6', 'B5', 'B6']
-kitchen = ['A9', 'A10', 'B9', 'B10']
-dining = ['E1', 'E2', 'F1', 'F2']
+kitchen = ['A1', 'A2', 'B1', 'B2']
+hall = ['A5', 'A6', 'B5', 'B6']
+lounge = ['A9', 'A10', 'B9', 'B10']
+library = ['E1', 'E2', 'F1', 'F2']
 cellar = ['E5', 'E6', 'F5', 'F6']
-hall = ['E9', 'E10', 'F9', 'F10']
-study = ['I1', 'I2', 'J1', 'J2']
-pool = ['I5', 'I6', 'J5', 'J6']
-lounge = ['I9', 'I10', 'J9', 'J10']
-doors = ['C1', 'A4', 'C9', 'F3', 'D6', 'E8', 'J3', 'I7', 'J8']
-rooms = [laboratory, library, kitchen, dining, cellar, hall, study, pool, lounge]
-rooms_hash = {0 => 'Laboratory', 1 => 'Library', 2 => 'Kitchen', 3 => 'Dining Room', 4 => 'Cellar', 5 => 'Hall', 6 => 'Study', 7 => 'Pool Room', 8 => 'Lounge'}
+pool = ['E9', 'E10', 'F9', 'F10']
+laboratory = ['I1', 'I2', 'J1', 'J2']
+dining = ['I5', 'I6', 'J5', 'J6']
+study = ['I9', 'I10', 'J9', 'J10']
+doors = ['B3', 'C5', 'C10', 'G1', 'E4', 'D9', 'J3', 'H6', 'H10']
+rooms = [kitchen, hall, lounge, library, cellar, pool, laboratory, dining, study]
+rooms_hash = {0 => 'Kitchen', 1 => 'Hall', 2 => 'Lounge', 3 => 'Library', 4 => 'Cellar', 5 => 'Pool Room', 6 => 'Laboratoy', 7 => 'Dining Room', 8 => 'Study'}
 coordinates.each do |coordinate|
   space = Space.create({:coordinates => coordinate, :player_id => nil, :space_type => 'space'})
   rooms.each_with_index do |room, index|
