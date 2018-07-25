@@ -28,7 +28,7 @@ post '/start/new_players' do
 end
 
 get('/board') do
-  @spaces = Space.all
+  @spaces = Space.all.order(:id)
   @player = Player.all.where(turn: 't').first
   @cards = Card.all.where(player_id: @player.id)
   erb(:board)
