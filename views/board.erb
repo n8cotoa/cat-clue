@@ -4,7 +4,15 @@
       <% x = 1 %>
       <div class="row">
         <% @spaces.each do |space| %>
-            <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+        <a href="board/<%= space.coordinates %>" name="space.id">
+          <div class="col">
+            <% if space.player_id != nil %>
+              <% player = Player.find(space.player_id.to_i) %>
+              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+            <% end %>
+          </div>
+        </a>
+            <% end %>
             <% x += 1 %>
           <% break if x > 10 %>
         <% end %>
@@ -15,9 +23,15 @@
         <% @spaces.each do |space| %>
         <% x += 1 %>
         <% next if x <= 10 %>
-
-            <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
-
+        <a href="board/<%= space.coordinates %>" name="space.id">
+          <div class="col">
+            <% if space.player_id != nil %>
+              <% player = Player.find(space.player_id.to_i) %>
+              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+            <% end %>
+          </div>
+        </a>
+            <% end %>
           <% break if x >= 20 %>
         <% end %>
       </div>
@@ -26,7 +40,15 @@
         <% @spaces.each do |space| %>
         <% x += 1 %>
         <% next if x <= 40 %>
-            <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+        <a href="board/<%= space.coordinates %>" name="space.id">
+          <div class="col">
+            <% if space.player_id != nil %>
+              <% player = Player.find(space.player_id.to_i) %>
+              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+            <% end %>
+          </div>
+        </a>
+            <% end %>
           <% break if x >= 50 %>
         <% end %>
       </div>
@@ -35,7 +57,15 @@
         <% @spaces.each do |space| %>
         <% x += 1 %>
         <% next if x <= 80 %>
-          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+        <a href="board/<%= space.coordinates %>" name="space.id">
+          <div class="col">
+            <% if space.player_id != nil %>
+              <% player = Player.find(space.player_id.to_i) %>
+              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+            <% end %>
+          </div>
+        </a>
+          <% end %>
           <% break if x >= 90 %>
         <% end %>
       </div>
@@ -44,7 +74,15 @@
         <% @spaces.each do |space| %>
         <% x += 1 %>
         <% next if x <= 130 %>
-          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+        <a href="board/<%= space.coordinates %>" name="space.id">
+          <div class="col">
+            <% if space.player_id != nil %>
+              <% player = Player.find(space.player_id.to_i) %>
+              <img class="player-piece" src="<%= player.name %>" alt="Player Image">
+            <% end %>
+          </div>
+        </a>
+          <% end %>
           <% break if x >= 140 %>
         <% end %>
       </div>
@@ -53,7 +91,15 @@
         <% @spaces.each do |space| %>
         <% x += 1 %>
         <% next if x <= 190 %>
-          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+        <a href="board/<%= space.coordinates %>" name="space.id">
+          <div class="col">
+            <% if space.player_id != nil %>
+              <% player = Player.find(space.player_id.to_i) %>
+              <img class="player-piece" src="<%= player.name %>" alt="Player Image">
+            <% end %>
+          </div>
+        </a>
+          <% end %>
           <% break if x >= 200 %>
         <% end %>
       </div>
@@ -62,7 +108,15 @@
         <% @spaces.each do |space| %>
         <% x += 1 %>
         <% next if x <= 260 %>
-          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+        <a href="board/<%= space.coordinates %>" name="space.id">
+          <div class="col">
+            <% if space.player_id != nil %>
+              <% player = Player.find(space.player_id.to_i) %>
+              <img class="player-piece" src="<%= player.name %>" alt="Player Image">
+            <% end %>
+          </div>
+        </a>
+          <% end %>
           <% break if x >= 270 %>
         <% end %>
       </div>
@@ -71,7 +125,15 @@
         <% @spaces.each do |space| %>
         <% x += 1 %>
         <% next if x <= 340 %>
-          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+        <a href="board/<%= space.coordinates %>" name="space.id">
+          <div class="col">
+            <% if space.player_id != nil %>
+              <% player = Player.find(space.player_id.to_i) %>
+              <img class="player-piece" src="<%= player.name %>" alt="Player Image">
+            <% end %>
+          </div>
+        </a>
+          <% end %>
           <% break if x >= 350 %>
         <% end %>
       </div>
@@ -80,7 +142,15 @@
         <% @spaces.each do |space| %>
         <% x += 1 %>
         <% next if x <= 430 %>
-          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+        <a href="board/<%= space.coordinates %>" name="space.id">
+          <div class="col">
+            <% if space.player_id != nil %>
+              <% player = Player.find(space.player_id.to_i) %>
+              <img class="player-piece" src="<%= player.name  %>" alt="Player Image">
+            <% end %>
+          </div>
+        </a>
+          <% end %>
           <% break if x >= 440 %>
         <% end %>
       </div>
@@ -89,11 +159,18 @@
         <% @spaces.each do |space| %>
         <% x += 1 %>
         <% next if x <= 530 %>
-          <a href="board/<%= space.coordinates %>" name="space.id"><div class="col"></div></a>
+          <a href="board/<%= space.coordinates %>" name="space.id">
+            <div class="col">
+              <% if space.player_id != nil %>
+                <% player = Player.find(space.player_id.to_i) %>
+                <img class="player-piece" src="<%= player.name %>" alt="Player Image">
+              <% end %>
+            </div>
+          </a>
+          <% end %>
           <% break if x >= 540 %>
         <% end %>
       </div>
-
     </div>
   </form>
   </div>

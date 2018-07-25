@@ -32,3 +32,28 @@ a {
 .game {
   margin: auto;
 }
+
+.player-piece {
+  z-index: 10;
+  width: 6vw;
+  height: 6vw;
+
+}
+
+.card {
+  display: inline-block;
+}
+
+.card-title {
+  font-size: 90%;
+  text-align: center;
+}
+
+.card-img-bottom {
+  width: 90%;
+  height: auto;
+}
+
+.btn {
+  margin-top: 10px;
+}
