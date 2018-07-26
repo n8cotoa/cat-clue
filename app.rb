@@ -104,12 +104,12 @@ post '/players/:id/make_guess' do
   @cat = params['killer']
   @room = params['room']
   @response_from_user = current_player.player_guess_match(@cat, @weapon, @room)
-  binding.pry
+  @found_card = Card.find_by(card_name: @response_from_user)
   erb(:guess_result)
 end
 
 get '/players/next' do
   current_player = Player.all.where(turn: 't').first
   current_player.end_turn
-  redirect back
+  redirect '/board'
 end

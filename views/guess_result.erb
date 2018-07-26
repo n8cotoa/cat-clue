@@ -12,10 +12,17 @@
         </button>
       </div>
       <div class="modal-body">
-        Your result is <%= @response_from_user %>
+        <div class="player_cards">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= @found_card.card_name %></h5>
+            </div>
+            <img class="card-img-bottom" src="<%= url(@found_card.image) %>" alt="Card Image">
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <a href="/board"><button type="button" class="btn btn-danger">Back to Board</button></a>
+        <a href="/players/next"><button type="button" class="btn btn-danger">Back to Board</button></a>
 
       </div>
     </div>

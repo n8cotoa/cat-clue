@@ -2,57 +2,51 @@
     <p>Current Player: <%= @player.name %></p>
   </div>
 
-
-<% if @player.dice_roll == nil || @player.dice_roll < 0 %>
-  <a href="/players/<%= @player.id %>/roll"><span class="btn btn-primary">Roll Dice</span></a>
-<% end %>
-
   <div class="container">
     <p>Cards in Hand: <%= @cards.count %></p>
   </div>
 
 
-  <div class="container">
-    <p>Roll: <%= @player.dice_roll %> </p>
-  </div>
-
-<% @rooms.each do |room| %>
-  <% found_room = Space.find_by(coordinates: room) %>
-  <% if found_room.player_id == @player.id %>
-    <a href="/players/<%= @player.id%>/make_guess"><span class="btn btn-success">Make Guess</span></a>
-    <% break %>
-  <% end %>
-<% end %>
-
-<% @final_room.each do |room| %>
-  <% found_room = Space.find_by(coordinates: room) %>
-  <% if found_room.player_id == @player.id %>
-    <a href="/players/<%= @player.id%>/final_guess"><span class="btn btn-warning">Make Final Guess</span></a>
-    <% break %>
-  <% end %>
-<% end %>
-
 
   <div class="container">
-    <a href="/players/<%= @player.id %>/roll"><span class="btn btn-primary">Roll Dice</span></a>
+    <% if @player.dice_roll == nil || @player.dice_roll < 0  %>
+      <p> Moves Left: 0 </p>
+    <% else %>
+      <p> Moves Left: <%= @player.dice_roll %></p>
+    <% end %>
   </div>
+
+  <div class="container">
+    <% if @player.dice_roll == nil || @player.dice_roll < 0 %>
+      <a href="/players/<%= @player.id %>/roll"><span class="btn btn-primary">Roll Dice</span></a>
+    <% end %>
+  </div>
+
+<div class="container">
+  <% @rooms.each do |room| %>
+    <% found_room = Space.find_by(coordinates: room) %>
+    <% if found_room.player_id == @player.id %>
+      <a href="/players/<%= @player.id%>/make_guess"><span class="btn btn-success">Make Guess</span></a>
+      <% break %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="container">
+  <% @final_room.each do |room| %>
+    <% found_room = Space.find_by(coordinates: room) %>
+    <% if found_room.player_id == @player.id %>
+      <a href="/players/<%= @player.id%>/final_guess"><span class="btn btn-warning">Make Final Guess</span></a>
+      <% break %>
+    <% end %>
+  <% end %>
+</div>
+
 
   <div class="container">
     <a href="/players/<%= @player.id%>/checkcards"><span class="btn btn-success">Check Cards</span></a>
   </div>
 
-<p>Cards in Hand: <%= @cards.count %></p>
-<% if @player.dice_roll == nil || @player.dice_roll < 0  %>
-  <p> Moves Left: 0 </p>
-<% else %>
-  <p> Moves Left: <%= @player.dice_roll %></p>
-<% end %>
-
-  <div class="container">
-    <a href="/players/<%= @player.id%>/make_guess"><span class="btn btn-success">Make Guess</span></a>
-  </div>
-
   <div class="container">
     <a href="/players/next"><span class = "btn btn-danger">End Turn</span></a>
   </div>
-
