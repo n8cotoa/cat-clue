@@ -104,6 +104,7 @@ post '/players/:id/make_guess' do
   @cat = params['killer']
   @room = params['room']
   @response_from_user = current_player.player_guess_match(@cat, @weapon, @room)
+  @found_card = Card.find_by(card_name: @response_from_user)
   erb(:guess_result)
 end
 
