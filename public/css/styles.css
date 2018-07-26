@@ -1,3 +1,7 @@
+body {
+  background-color: grey;
+}
+
 .board {
   background-image: url('../img/clue_board.svg');
   background-size: cover;
