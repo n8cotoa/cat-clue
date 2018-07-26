@@ -1,14 +1,28 @@
-<%= @player.name %>
+  <div class="container">
+    <p>Current Player: <%= @player.name %></p>
+  </div>
 
-<a href="/players/<%= @player.id %>/roll"><span class="btn btn-primary">Roll Dice</span></a>
+  <div class="container">
+    <p>Cards in Hand: <%= @cards.count %></p>
+  </div>
 
-<a href="/players/<%= @player.id%>/checkcards"><span class="btn btn-success">Check Cards</span></a>
-
-<a href="/players/<%= @player.id%>/make_guess"><span class="btn btn-success">Make Guess</span></a>
-
-<a href="/players/next"><span class = "btn btn-danger">End Turn</span></a>
+  <div class="container">
+    <p>Roll: <%= @player.dice_roll %> </p>
+  </div>
 
 
-<p>Cards in Hand: <%= @cards.count %></p>
+  <div class="container">
+    <a href="/players/<%= @player.id %>/roll"><span class="btn btn-primary">Roll Dice</span></a>
+  </div>
 
-<p>Roll: <%= @player.dice_roll %> </p>
+  <div class="container">
+    <a href="/players/<%= @player.id%>/checkcards"><span class="btn btn-success">Check Cards</span></a>
+  </div>
+
+  <div class="container">
+    <a href="/players/<%= @player.id%>/make_guess"><span class="btn btn-success">Make Guess</span></a>
+  </div>
+
+  <div class="container">
+    <a href="/players/next"><span class = "btn btn-danger">End Turn</span></a>
+  </div>
