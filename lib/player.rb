@@ -33,55 +33,97 @@ class Player < ActiveRecord::Base
     laboratory = ['I1', 'I2', 'J1', 'J2']
     dining = ['I5', 'I6', 'J5', 'J6']
     study = ['I9', 'I10', 'J9', 'J10']
-    rooms = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
-    guess_allowed = false ## this will be the return value?
-    new_space = Space.where(coordinates: new_coords).first
-    doors = Space.where('space_type LIKE ?', '%Door').all
+    all_room_coords = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
+    roll = self.dice_roll
     original_space = Space.find_by(player_id: self.id)
     original_coords = original_space.coordinates
     available_spaces = self.available_spaces(original_coords)
-    roll = self.dice_roll
-    if (roll > 0) && (available_spaces.include?(new_space.coordinates))
-      if (doors.include?(original_space)) && (rooms.include?(new_space.coordinates)) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
-        new_space.update(player_id: self.id)
-        original_space.update(player_id: nil)
-        guess_allowed = true
-        roll -= 1
-        self.update(dice_roll: roll)
-      else ## i.e. new_space is NOT a room
+    new_space = Space.find_by(coordinates: new_coords)
+    if roll > 0
+      if available_spaces.include?(new_space.coordinates)
         new_space.update(player_id: self.id)
         original_space.update(player_id: nil)
         roll -= 1
         self.update(dice_roll: roll)
-
       end
-    # else ## i.e. They have no rolls left or they didn't click an adjacent, available space
+      if all_room_coords.include?(new_coords)
+        guess_allowed = true
+      end
     end
-    guess_allowed
   end
 
-  def available_spaces(current_coords) ## from the current player coords, get the spaces which are adjacent and open (blank space or blank door)
+  def available_spaces(current_coords)
+    ## Setup
     letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
     numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    kitchen = ['A1', 'A2', 'B1', 'B2']
+    hall = ['A5', 'A6', 'B5', 'B6']
+    lounge = ['A9', 'A10', 'B9', 'B10']
+    library = ['E1', 'E2', 'F1', 'F2']
+    cellar = ['E5', 'E6', 'F5', 'F6']
+    pool = ['E9', 'E10', 'F9', 'F10']
+    laboratory = ['I1', 'I2', 'J1', 'J2']
+    dining = ['I5', 'I6', 'J5', 'J6']
+    study = ['I9', 'I10', 'J9', 'J10']
+    rooms_hash = {0 => 'Kitchen', 1 => 'Hall', 2 => 'Lounge', 3 => 'Library', 4 => 'Cellar', 5 => 'Pool Room', 6 => 'Laboratoy', 7 => 'Dining Room', 8 => 'Study'}
+    rooms = [kitchen, hall, lounge, library, cellar, pool, laboratory, dining, study]
+    doors = Space.where('space_type LIKE ?', '%Door').all
+    all_room_coords = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
+    all_room_spaces = []
+    all_room_coords.each do |coords|
+      room_space = Space.find_by(coordinates: coords)
+      all_room_spaces.push(room_space)
+    end
+    empty_spaces = Space.where(player_id: nil).all
+    empty_room_spaces = all_room_spaces & empty_spaces
+    current_space = Space.find_by(coordinates: current_coords)
     player_x_axis = current_coords.split('', 2)[0]
     player_y_axis = current_coords.split('', 2)[1]
     available_spaces = []
-    blanks = Space.where(space_type: 'space', player_id: nil)
+    available_coords = []
+    empty_halls = Space.where(space_type: 'space', player_id: nil)
     doors = Space.where('space_type LIKE ?', '%Door').all
-    rooms_and_doors = Space.where.not(space_type: 'space').all
-    rooms = rooms_and_doors - doors
-    empty = Space.where(player_id: nil).all
-    empty_doors = doors & empty
-    open_spaces = blanks + empty_doors + rooms
-    open_spaces.each do |space|
-      space_x_axis = space.coordinates.split('', 2)[0]
-      space_y_axis = space.coordinates.split('', 2)[1]
-      ## (if on the y axis it's 1 away, and the x-axis is the same) XOR vice versa
-      if (((player_y_axis.to_i - space_y_axis.to_i).abs == 1) && (letters.index(player_x_axis) == letters.index(space_x_axis))) ^ (((letters.index(player_x_axis) - letters.index(space_x_axis)).abs == 1) && (player_y_axis.to_i == space_y_axis.to_i))
-        available_spaces.push(space.coordinates)
+    empty_doors = doors & empty_spaces
+    empty_room_spaces = []
+    rooms.each do |room|
+      room.each do |room_coords|
+        room_space = Space.find_by(coordinates: room_coords)
+        if room_space.player_id == nil
+          empty_room_spaces.push(room_space)
+        end
       end
     end
-    available_spaces
+    ## Check which type of space current_coords is with if statement
+    if current_space.space_type == 'space'
+      available_spaces = empty_halls + empty_doors
+      available_spaces.each do |space|
+        space_x_axis = space.coordinates.split('', 2)[0]
+        space_y_axis = space.coordinates.split('', 2)[1]
+        ## (if on the y axis it's 1 away, and the x-axis is the same) XOR vice versa
+        if (((player_y_axis.to_i - space_y_axis.to_i).abs == 1) && (letters.index(player_x_axis) == letters.index(space_x_axis))) ^ (((letters.index(player_x_axis) - letters.index(space_x_axis)).abs == 1) && (player_y_axis.to_i == space_y_axis.to_i))
+          available_coords.push(space.coordinates)
+        end
+      end
+    elsif doors.include?(current_space)
+      available_spaces = empty_halls + empty_room_spaces
+      available_spaces.each do |space|
+        space_x_axis = space.coordinates.split('', 2)[0]
+        space_y_axis = space.coordinates.split('', 2)[1]
+        if (((player_y_axis.to_i - space_y_axis.to_i).abs == 1) && (letters.index(player_x_axis) == letters.index(space_x_axis))) ^ (((letters.index(player_x_axis) - letters.index(space_x_axis)).abs == 1) && (player_y_axis.to_i == space_y_axis.to_i))
+          available_coords.push(space.coordinates)
+        end
+      end
+    elsif all_room_spaces.include?(current_space) # Lastly, if you're on a room,
+      available_spaces = empty_room_spaces + doors
+      available_spaces.each do |space|
+        space_x_axis = space.coordinates.split('', 2)[0]
+        space_y_axis = space.coordinates.split('', 2)[1]
+        if (((player_y_axis.to_i - space_y_axis.to_i).abs == 1) && (letters.index(player_x_axis) == letters.index(space_x_axis))) ^ (((letters.index(player_x_axis) - letters.index(space_x_axis)).abs == 1) && (player_y_axis.to_i == space_y_axis.to_i))
+          available_coords.push(space.coordinates)
+        end
+      end
+    end
+    available_coords
   end
 
   def save_guess(cat, weapon, room)

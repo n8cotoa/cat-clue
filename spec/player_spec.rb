@@ -46,13 +46,39 @@ describe(Player) do
     end
   end
 
-  context ('#available_spaces') do
+  context ('#available_spaces where current_space is a hall') do
     it('will check available_spaces which a player can move to') do
       player = Player.find_by(name: 'Player 1')
-      space = Space.find_by(coordinates: 'E4')
+      space = Space.find_by(coordinates: 'D4')
       space.update(player_id: player.id)
       adjacent_spaces = []
-      Space.where("coordinates = 'D4' OR coordinates = 'E3' OR coordinates = 'F4'").each do |adj_space|
+      Space.where("coordinates = 'D3' OR coordinates = 'F4' OR coordinates = 'C4' OR coordinates = 'D5'").each do |adj_space|
+        adjacent_spaces.push(adj_space)
+      end
+      expect(player.available_spaces(space.coordinates)).to(eq(adjacent_spaces))
+    end
+  end
+
+  context ('#available_spaces where current_space is on a door') do
+    it('will check available_spaces which a player can move to') do
+      player = Player.find_by(name: 'Player 1')
+      space = Space.find_by(coordinates: 'B3')
+      space.update(player_id: player.id)
+      adjacent_spaces = []
+      Space.where("coordinates = 'B2' OR coordinates = 'C3' OR coordinates = 'A3'").each do |adj_space|
+        adjacent_spaces.push(adj_space)
+      end
+      expect(player.available_spaces(space.coordinates)).to(eq(adjacent_spaces))
+    end
+  end
+
+  context ('#available_spaces where current_space is in a room') do
+    it('will check available_spaces which a player can move to') do
+      player = Player.find_by(name: 'Player 1')
+      space = Space.find_by(coordinates: 'B2')
+      space.update(player_id: player.id)
+      adjacent_spaces = []
+      Space.where("coordinates = 'B1' OR coordinates = 'A2' OR coordinates = 'B3'").each do |adj_space|
         adjacent_spaces.push(adj_space)
       end
       expect(player.available_spaces(space.coordinates)).to(eq(adjacent_spaces))
