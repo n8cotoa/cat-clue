@@ -10,7 +10,7 @@ h1 {
 }
 
 label {
-  font-size: 2em;
+  font-size: 1.4em;
 }
 
 
@@ -69,6 +69,9 @@ label {
 .card {
   width: 70%;
   padding: 15px;
+  background-color: rgba(170, 124, 150, 0.9);
+  border-color: rgba(170, 124, 150, 0.9);
+  color: white;
   box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
   -moz-box-shadow:    4px 5px 6px rgba(34,34,34,0.6);
   -webkit-box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
@@ -76,19 +79,24 @@ label {
 
 .homePage {
   text-align: center;
-  padding-top: 30%;
+  padding-top: 30vw;
 }
 
 .playerSelect {
   text-align: center;
-  padding-top: 15%;
+  padding-top: 15vw;
+}
+
+#playerSelectHeader {
+  font-size: 3em;
 }
 
 .playerGuess {
   text-align: center;
-  padding-top: 20%;
+  padding-top: 20vw;
 }
 
 #makeGuessHeader {
   font-size: 2.5em;
+  color: white;
 }
