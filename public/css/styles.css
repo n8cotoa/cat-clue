@@ -47,11 +47,6 @@ label {
 
 }
 
-.card {
-  display: inline-block;
-  height: auto;
-}
-
 .card-title {
   font-size: 90%;
   text-align: center;
@@ -75,6 +70,16 @@ label {
   box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
   -moz-box-shadow:    4px 5px 6px rgba(34,34,34,0.6);
   -webkit-box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
+}
+
+.playerCard {
+  display: inline-block;
+  height: auto;
+  width: auto;
+}
+
+.playerCardModal {
+  width: 20%;
 }
 
 .homePage {
