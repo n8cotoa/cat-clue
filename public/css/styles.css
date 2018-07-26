@@ -1,6 +1,14 @@
 body {
-  background-color: grey;
+  background-color: #63989D;
+  background-image: url('../img/cats.svg');
+  background-size: cover;
+  font-family: 'Ubuntu', sans-serif;
 }
+
+h1 {
+  font-family: 'Yatra One', cursive;
+}
+
 
 .board {
   background-image: url('../img/clue_board.svg');
@@ -23,10 +31,6 @@ body {
   padding: 0;
   width: 7vw;
 }
-
-/* .game {
-  margin-left: 15vw;
-} */
 
 .playerView {
   float: right;
@@ -56,4 +60,14 @@ body {
 
 .btn {
   margin-top: 10px;
+}
+
+.homePage {
+  text-align: center;
+  padding-top: 40%;
+}
+
+.playerSelect {
+  text-align: center;
+  padding-top: 30%;
 }
