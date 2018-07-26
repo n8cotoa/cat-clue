@@ -64,9 +64,46 @@ get '/players/:id/checkcards' do
   erb(:checkcards)
 end
 
+get '/players/:id/scorecard' do
+  id = params[:id].to_i
+  @player = Player.find(id)
+  @cards = Card.all
+  erb(:scorecard)
+end
+
+post '/players/:id/scorecard' do
+  @player = Player.find(params.fetch(:id))
+  if params.key?('card_ids')
+    card_ids = params.fetch("card_ids")
+    card_ids.each do |card_id|
+      card = Card.find(card_id.to_i)
+      @player.cards.push(card)
+    end
+    redirect back
+  else
+    redirect back
+  end
+end
+
+patch '/players/:id/scorecard' do
+  @player = Player.find(params.fetch(:id))
+  if params.key?('card_ids')
+    card_ids = params.fetch("card_ids")
+    binding.pry
+    card_ids.each do |card_id|
+      card = Card.find(card_id.to_i)
+      @player.cards.destroy(card)
+      binding.pry
+    end
+    redirect back
+  else
+    redirect back
+  end
+end
+
 get '/players/:id/make_guess' do
-  current_player = Player.all.where(turn: 't').first
-  @room = Space.find_by(player_id: current_player)
+  @player = Player.all.where(turn: 't').first
+  @room = Space.find_by(player_id: @player)
   @cats = Card.all.where(card_type: 'Cat')
   @weapons = Card.all.where(card_type: 'Weapon')
   erb(:make_guess)
@@ -99,11 +136,11 @@ post '/players/:id/final_guess' do
 end
 
 post '/players/:id/make_guess' do
-  current_player = Player.all.where(turn: 't').first
+  @player = Player.all.where(turn: 't').first
   @weapon = params['weapon']
   @cat = params['killer']
   @room = params['room']
-  @response_from_user = current_player.player_guess_match(@cat, @weapon, @room)
+  @response_from_user = @player.player_guess_match(@cat, @weapon, @room)
   @found_card = Card.find_by(card_name: @response_from_user)
   erb(:guess_result)
 end

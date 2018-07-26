@@ -1,7 +1,7 @@
 <div class="container playerGuess">
   <p id="makeGuessHeader">Make a Guess</p>
   <div class="card">
-    <form class="" action="/players/:id/make_guess" method="post">
+    <form class="" action="/players/<%= @player.id %>/make_guess" method="post">
 
       <label for="room">Room</label>
       <select class="form-control" name="room" type="text">

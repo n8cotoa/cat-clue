@@ -28,7 +28,7 @@ A recreation of the classic game 'Clue' using Ruby, Sinatra, and ActiveRecord
 
 ## User Stories
 ### MVP User Stories
-* Exactly 2 human players against 2 computer players will take turns to guess the details of the Murder
+* Exactly 4 human players will take turns to guess the details of the Murder
 
 ## License
 
