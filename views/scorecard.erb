@@ -1,0 +1,41 @@
+<div class="container scorecard">
+<div class="row">
+  <div class="col-md-5 not-suspect">
+    <% if @player.cards.any? %>
+    <h3>Add cats, weapons, or rooms back to your suspect list:</h3>
+      <form action="/players/<%= @player.id %>/scorecard" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <% @player.cards.each do |card| %>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="card_ids[]" value="<%= card.id %>"><%= card.card_name %>
+            </label>
+          </div>
+        <% end %>
+        <button type="submit"class="btn btn-danger">Remove</button>
+      </form>
+    <% else %>
+    <h3>You haven't done any detective work yet!</h3>
+    <% end %>
+  </div>
+  <div class="col-md-5 suspect">
+    <h3>Remove suspects, weapons, and rooms from your list:</h3>
+      <form action="/players/<%= @player.id %>/scorecard" method="post">
+        <% @cards.sort.each do |card| %>
+          <% if @player.cards.include?(card) %>
+          <% else %>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="card_ids[]" value="<%= card.id %>"><%= card.card_name %>
+              </label>
+            </div>
+          <% end %>
+        <% end %>
+        <button type="submit" class="btn btn-success">Remove</button>
+      </form>
+  </div>
+  <div class="col-md-2">
+    <a href="/board"><span class="btn btn-danger">Home</span></a>
+  </div>
+</div>
+</div>
