@@ -7,8 +7,11 @@ class Player < ActiveRecord::Base
     last_player = players.last
     if self == last_player
       next_player = players.first
+    # elsif players.find(self.id + 1) == nil
+    # next_player = players.find(self.id + 2)
     else
-      next_player = players.find(self.id + 1)
+      next_player = Player.where("id > ?", self.id).first
+      # players.find(self.id + 1)
     end
     self.update(turn: 'f', dice_roll: -1)
     next_player.update(turn: 't')

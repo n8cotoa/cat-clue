@@ -1,6 +1,6 @@
 <h1>Uh-Oh! You guessed wrong! You're out of the game!</h1>
 
-<% if Player.all = nil %>
+<% if Player.all == nil %>
   <a href="/start"><span class="btn btn-danger">Play Again?</span></a>
 <% else %>
   <a href="/board"><span class="btn btn-danger">Back to the Game</span></a>
