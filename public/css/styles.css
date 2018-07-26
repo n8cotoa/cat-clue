@@ -9,6 +9,10 @@ h1 {
   font-family: 'Yatra One', cursive;
 }
 
+label {
+  font-size: 2em;
+}
+
 
 .board {
   background-image: url('../img/clue_board.svg');
@@ -62,6 +66,11 @@ h1 {
   margin-top: 10px;
 }
 
+.card {
+  width: 70%;
+  padding: 15px;
+}
+
 .homePage {
   text-align: center;
   padding-top: 40%;
@@ -70,4 +79,9 @@ h1 {
 .playerSelect {
   text-align: center;
   padding-top: 30%;
+}
+
+.playerGuess {
+  text-align: center;
+  padding-top: 23%;
 }
