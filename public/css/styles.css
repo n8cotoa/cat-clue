@@ -84,12 +84,14 @@ label {
 
 .homePage {
   text-align: center;
-  padding-top: 30vw;
+  padding-top: 30vh;
+  padding-left: 15vw;
 }
 
 .playerSelect {
   text-align: center;
-  padding-top: 15vw;
+  padding-top: 15vh;
+  padding-left: 15vw;
 }
 
 #playerSelectHeader {
@@ -98,10 +100,13 @@ label {
 
 .playerGuess {
   text-align: center;
-  padding-top: 20vw;
+  padding-top: 20vh;
+  padding-left: 15vw;
 }
 
 #makeGuessHeader {
   font-size: 2.5em;
   color: white;
+  padding-left: 0vw;
+  width: 70%;
 }
