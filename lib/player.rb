@@ -92,9 +92,12 @@ class Player < ActiveRecord::Base
     player_guess = [cat, weapon, room]
     cards_to_pick_from = Card.where(answer: 'f').where.not(player_id: self.id)
     returned_card = nil
+
     player_guess.shuffle.each do |guess|
-      if cards_to_pick_from.include?(guess)
+      guess_card = Card.find_by(card_name: guess)
+      if cards_to_pick_from.include?(guess_card)
         returned_card = guess
+        returned_card
         break
       else
         returned_card = false

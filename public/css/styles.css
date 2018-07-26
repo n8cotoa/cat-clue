@@ -1,3 +1,7 @@
+body {
+  background-color: grey;
+}
+
 .board {
   background-image: url('../img/clue_board.svg');
   background-size: cover;
@@ -5,6 +9,7 @@
   width: 70vw;
   margin: 0;
   padding: 0;
+  float: left;
 }
 
 .row {
@@ -19,8 +24,12 @@
   width: 7vw;
 }
 
-.game {
+/* .game {
   margin-left: 15vw;
+} */
+
+.playerView {
+  float: right;
 }
 
 .player-piece {
