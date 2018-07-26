@@ -90,7 +90,7 @@ post '/players/:id/final_guess' do
     erb(:win)
   else
     @current_player.end_turn
-    player_to_destory = Player.find(id)
+    player_to_destory = Player.find_by(name: @current_player.name)
     space_update = Space.find_by(player_id: id)
     space_update.update({:player_id => nil})
     player_to_destory.destroy
