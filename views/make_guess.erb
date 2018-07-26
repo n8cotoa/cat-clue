@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="" action="/players/:id/make_guess" method="post">
+  <form class="" action="/players/<%= @player.id %>/make_guess" method="post">
     <label for="room">Room</label>
     <input type="text" name="room" value="<%= @room.space_type %>" placeholder="<%= @room.space_type %>">
     <label for="killer">Killer</label>
@@ -14,6 +14,6 @@
       <option value="<%= weapon.card_name %>"><%= weapon.card_name %></option>
       <% end %>
     </select>
-    <button type="submit">Guess</button>
+    <button class="btn btn-primary" type="submit">Guess</button>
   </form>
 </div>

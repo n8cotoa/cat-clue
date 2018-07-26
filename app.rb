@@ -102,8 +102,8 @@ patch '/players/:id/scorecard' do
 end
 
 get '/players/:id/make_guess' do
-  current_player = Player.all.where(turn: 't').first
-  @room = Space.find_by(player_id: current_player)
+  @player = Player.all.where(turn: 't').first
+  @room = Space.find_by(player_id: @player)
   @cats = Card.all.where(card_type: 'Cat')
   @weapons = Card.all.where(card_type: 'Weapon')
   erb(:make_guess)
@@ -136,11 +136,11 @@ post '/players/:id/final_guess' do
 end
 
 post '/players/:id/make_guess' do
-  current_player = Player.all.where(turn: 't').first
+  @player = Player.all.where(turn: 't').first
   @weapon = params['weapon']
   @cat = params['killer']
   @room = params['room']
-  @response_from_user = current_player.player_guess_match(@cat, @weapon, @room)
+  @response_from_user = @player.player_guess_match(@cat, @weapon, @room)
   @found_card = Card.find_by(card_name: @response_from_user)
   erb(:guess_result)
 end
