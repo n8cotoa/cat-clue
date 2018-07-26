@@ -96,6 +96,7 @@ post '/players/:id/final_guess' do
     player_to_destory.destroy
     erb(:lose)
   end
+end
 
 post '/players/:id/make_guess' do
   current_player = Player.all.where(turn: 't').first
