@@ -63,14 +63,6 @@ class Player < ActiveRecord::Base
   # end
 
   def move(new_coords)
-    # Setup
-    roll = self.dice_roll
-    original_space = Space.find_by(player_id: self.id)
-    original_coords = original_space.coordinates
-    available_spaces = self.available_spaces(original_coords)
-    new_space = Space.find_by(coordinates: new_coords)
-    doors = Space.where('space_type LIKE ?', '%Door').all
-    rooms_hash = {0 => 'Kitchen', 1 => 'Hall', 2 => 'Lounge', 3 => 'Library', 4 => 'Cellar', 5 => 'Pool Room', 6 => 'Laboratoy', 7 => 'Dining Room', 8 => 'Study'}
     kitchen = ['A1', 'A2', 'B1', 'B2']
     hall = ['A5', 'A6', 'B5', 'B6']
     lounge = ['A9', 'A10', 'B9', 'B10']
@@ -80,61 +72,78 @@ class Player < ActiveRecord::Base
     laboratory = ['I1', 'I2', 'J1', 'J2']
     dining = ['I5', 'I6', 'J5', 'J6']
     study = ['I9', 'I10', 'J9', 'J10']
-    rooms = [kitchen, hall, lounge, library, cellar, pool, laboratory, dining, study]
-    # If statements
+    all_room_coords = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
+    # all_room_spaces = []
+    # all_room_coords.each do |coords|
+    #   room_space = Space.find_by(coordinates: coords)
+    #   all_room_spaces.push(room_space)
+    # end
+    roll = self.dice_roll
+    original_space = Space.find_by(player_id: self.id)
+    original_coords = original_space.coordinates
+    available_spaces = self.available_spaces(original_coords)
+    new_space = Space.find_by(coordinates: new_coords)
     if roll > 0
       if available_spaces.include?(new_space.coordinates)
-        if doors.include?(original_space)
-          binding.pry
-          door_string = original_space.space_type
-          nearby_room = door_string.split(" Door")[0]
-          room_index = rooms_hash.index(nearby_room)
-          nearby_room_spaces = rooms[room_index]
-          if nearby_room_spaces.include?(new_space)
-            new_space.update(player_id: self.id)
-            original_space.update(player_id: nil)
-            guess_allowed = true
-            roll -= 1
-            self.update(dice_roll: roll)
-          else # new_space is not in nearby_room
-            new_space.update(player_id: self.id)
-            original_space.update(player_id: nil)
-            roll -= 1
-            self.update(dice_roll: roll)
-          end
-        else # if current space is not a door
-          new_space.update(player_id: self.id)
-          original_space.update(player_id: nil)
-          roll -= 1
-          self.update(dice_roll: roll)
-        end
+        new_space.update(player_id: self.id)
+        original_space.update(player_id: nil)
+        roll -= 1
+        self.update(dice_roll: roll)
+      end
+      if all_room_coords.include?(new_coords)
+        guess_allowed = true
       end
     end
   end
 
-
-  # def available_spaces(current_coords) ## from the current player coords, get the spaces which are adjacent and open (blank space or blank door)
-  #   letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-  #   numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-  #   player_x_axis = current_coords.split('', 2)[0]
-  #   player_y_axis = current_coords.split('', 2)[1]
-  #   available_spaces = []
-  #   blanks = Space.where(space_type: 'space', player_id: nil)
+  # def move(new_coords)
+  #   # Setup
+  #   roll = self.dice_roll
+  #   original_space = Space.find_by(player_id: self.id)
+  #   original_coords = original_space.coordinates
+  #   available_spaces = self.available_spaces(original_coords)
+  #   new_space = Space.find_by(coordinates: new_coords)
   #   doors = Space.where('space_type LIKE ?', '%Door').all
-  #   rooms_and_doors = Space.where.not(space_type: 'space').all
-  #   rooms = rooms_and_doors - doors
-  #   empty = Space.where(player_id: nil).all
-  #   empty_doors = doors & empty
-  #   open_spaces = blanks + empty_doors ## Should not add rooms
-  #   open_spaces.each do |space|
-  #     space_x_axis = space.coordinates.split('', 2)[0]
-  #     space_y_axis = space.coordinates.split('', 2)[1]
-  #     ## (if on the y axis it's 1 away, and the x-axis is the same) XOR vice versa
-  #     if (((player_y_axis.to_i - space_y_axis.to_i).abs == 1) && (letters.index(player_x_axis) == letters.index(space_x_axis))) ^ (((letters.index(player_x_axis) - letters.index(space_x_axis)).abs == 1) && (player_y_axis.to_i == space_y_axis.to_i))
-  #       available_spaces.push(space.coordinates)
+  #   rooms_hash = {0 => 'Kitchen', 1 => 'Hall', 2 => 'Lounge', 3 => 'Library', 4 => 'Cellar', 5 => 'Pool Room', 6 => 'Laboratoy', 7 => 'Dining Room', 8 => 'Study'}
+  #   kitchen = ['A1', 'A2', 'B1', 'B2']
+  #   hall = ['A5', 'A6', 'B5', 'B6']
+  #   lounge = ['A9', 'A10', 'B9', 'B10']
+  #   library = ['E1', 'E2', 'F1', 'F2']
+  #   cellar = ['E5', 'E6', 'F5', 'F6']
+  #   pool = ['E9', 'E10', 'F9', 'F10']
+  #   laboratory = ['I1', 'I2', 'J1', 'J2']
+  #   dining = ['I5', 'I6', 'J5', 'J6']
+  #   study = ['I9', 'I10', 'J9', 'J10']
+  #   rooms = [kitchen, hall, lounge, library, cellar, pool, laboratory, dining, study]
+  #   # If statements
+  #   if roll > 0
+  #     if available_spaces.include?(new_space.coordinates)
+  #       if doors.include?(original_space)
+  #         binding.pry
+  #         door_string = original_space.space_type
+  #         nearby_room = door_string.split(" Door")[0]
+  #         room_index = rooms_hash.index(nearby_room)
+  #         nearby_room_spaces = rooms[room_index]
+  #         if nearby_room_spaces.include?(new_space)
+  #           new_space.update(player_id: self.id)
+  #           original_space.update(player_id: nil)
+  #           guess_allowed = true
+  #           roll -= 1
+  #           self.update(dice_roll: roll)
+  #         else # new_space is not in nearby_room
+  #           new_space.update(player_id: self.id)
+  #           original_space.update(player_id: nil)
+  #           roll -= 1
+  #           self.update(dice_roll: roll)
+  #         end
+  #       else # if current space is not a door
+  #         new_space.update(player_id: self.id)
+  #         original_space.update(player_id: nil)
+  #         roll -= 1
+  #         self.update(dice_roll: roll)
+  #       end
   #     end
   #   end
-  #   available_spaces
   # end
 
   def available_spaces(current_coords)

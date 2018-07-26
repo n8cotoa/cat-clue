@@ -1,3 +1,4 @@
+#
 # if roll > 0
 #   if new_space is in available_spaces
 #     if current_space is a door
@@ -24,7 +25,7 @@
 #   elsif available_spaces includes new_space
 #   elsif current_space and new_space are both in the room
 #
-#
+# #
 # def available_spaces(current_coords)
 #   ## Setup
 #   kitchen = ['A1', 'A2', 'B1', 'B2']
