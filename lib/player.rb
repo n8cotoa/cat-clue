@@ -95,10 +95,9 @@ class Player < ActiveRecord::Base
 
     player_guess.shuffle.each do |guess|
       guess_card = Card.find_by(card_name: guess)
-      binding.pry
       if cards_to_pick_from.include?(guess_card)
         returned_card = guess
-        binding.pry
+        returned_card
         break
       else
         returned_card = false

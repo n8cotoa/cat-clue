@@ -75,9 +75,9 @@ post '/players/:id/make_guess' do
   @weapon = params['weapon']
   @cat = params['killer']
   @room = params['room']
-  response = current_player.player_guess_match(@cat, @weapon, @room)
+  @response_from_user = current_player.player_guess_match(@cat, @weapon, @room)
   binding.pry
-  redirect '/board'
+  erb(:guess_result)
 end
 
 get '/players/next' do
