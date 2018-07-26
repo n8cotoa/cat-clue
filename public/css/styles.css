@@ -32,6 +32,7 @@
 
 .card {
   display: inline-block;
+  height: auto;
 }
 
 .card-title {
@@ -40,7 +41,7 @@
 }
 
 .card-img-bottom {
-  width: 90%;
+  width: 9vw;
   height: auto;
 }
 

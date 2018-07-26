@@ -10,7 +10,7 @@ class Player < ActiveRecord::Base
     else
       next_player = players.find(self.id + 1)
     end
-    self.update(turn: 'f')
+    self.update(turn: 'f', dice_roll: -1)
     next_player.update(turn: 't')
   end
 
@@ -101,6 +101,18 @@ class Player < ActiveRecord::Base
       end
     end
     returned_card
+  end
+
+  def final_guess(cat, weapon, room)
+    murder_scene = Card.where(answer: 't').all
+    cat_card = Card.find_by(card_name: cat)
+    weapon_card = Card.find_by(card_name: weapon)
+    room_card = Card.find_by(card_name: room)
+    if murder_scene.include?(cat_card) && murder_scene.include?(weapon_card) && murder_scene.include?(room_card)
+      true
+    else
+      false
+    end
   end
 
   def self.place_player
