@@ -69,19 +69,26 @@ label {
 .card {
   width: 70%;
   padding: 15px;
+  box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
+  -moz-box-shadow:    4px 5px 6px rgba(34,34,34,0.6);
+  -webkit-box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
 }
 
 .homePage {
   text-align: center;
-  padding-top: 40%;
+  padding-top: 30%;
 }
 
 .playerSelect {
   text-align: center;
-  padding-top: 30%;
+  padding-top: 15%;
 }
 
 .playerGuess {
   text-align: center;
-  padding-top: 23%;
+  padding-top: 20%;
+}
+
+#makeGuessHeader {
+  font-size: 2.5em;
 }
