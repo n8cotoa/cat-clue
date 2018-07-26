@@ -42,22 +42,23 @@ end
 
 #builds cards in database
 Card.destroy_all
-card_type = ['Weapon', 'Room']
 cats_card = ['Miss Scarlet', 'Colonel Mustard', 'Mr. Green', 'Mrs. Peacock', 'Mrs. White', 'Professor Plum']
 cats_img = {"Miss Scarlet" => '../img/cat_img/scarlet.png', "Colonel Mustard" => '../img/cat_img/mustard.png', "Mr. Green" => '../img/cat_img/green.png', "Mrs. Peacock" => '../img/cat_img/peacock.png', "Mrs. White" => '../img/cat_img/Mrs_White.png', "Professor Plum" => '../img/cat_img/purple.png'}
-weapons_card = ['Strong Catnip', 'Cardboard Box', 'Vase', 'Bread', 'Dog', 'Knife']
-rooms_card = ['Laboratory', 'Library', 'Kitchen', 'Dining Room', 'Hall', 'Study', 'Pool Room', 'Lounge']
-card_category =[weapons_card, rooms_card]
-
-card_category.each_with_index do |cards, index|
-  cards.each do |card|
-    Card.create({:card_type => card_type[index], :card_name => card, :answer => 'f', :player_id => nil, :image => ''})
-  end
-end
-
-cats_card.each_with_index do |cat, index|
+cats_card.each do |cat|
   Card.create({:card_type => "Cat", :card_name => cat, :answer => 'f', :player_id => nil, :image => cats_img[cat]})
 end
+weapons_card = ['Strong Catnip', 'Pipe', 'Revolver', 'Bomb', 'Shotgun', 'Knife']
+weapons_img = {"Strong Catnip" => '../img/weapon_img/potion.png', "Pipe" => '../img/weapon_img/pipe.png', "Revolver" => '../img/weapon_img/revolver.png', "Bomb" => '../img/weapon_img/bomb.png', "Shotgun" => '../img/weapon_img/shotgun.png', "Knife" => '../img/weapon_img/knife.png'}
+weapons_card.each do |weapon|
+  Card.create({:card_type => "Weapon", :card_name => weapon, :answer => 'f', :player_id => nil, :image => weapons_img[weapon]})
+end
+rooms_card = ['Laboratory', 'Library', 'Kitchen', 'Dining Room', 'Hall', 'Study', 'Pool Room', 'Lounge']
+room_img = {"Laboratory" => '../img/room_img/lab.png', "Library" => '../img/room_img/library.png', "Kitchen" => '../img/room_img/kitchen.png', "Dining Room" => '../img/room_img/dining.png', "Hall" => '../img/room_img/hall.png', "Study" => '../img/room_img/study.png', "Pool Room" => '../img/room_img/pool.png', "Lounge" => '../img/room_img/lounge.png'}
+rooms_card.each do |room|
+  Card.create({:card_type => "Room", :card_name => room, :answer => 'f', :player_id => nil, :image => room_img[room]})
+end
+
+
 
 #bulds example players
 Player.destroy_all #destroys all player info in database
