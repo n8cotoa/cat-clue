@@ -87,11 +87,13 @@ end
 
 patch '/players/:id/scorecard' do
   @player = Player.find(params.fetch(:id))
-  if params.key?('cards_id')
+  if params.key?('card_ids')
     card_ids = params.fetch("card_ids")
+    binding.pry
     card_ids.each do |card_id|
       card = Card.find(card_id.to_i)
       @player.cards.destroy(card)
+      binding.pry
     end
     redirect back
   else
