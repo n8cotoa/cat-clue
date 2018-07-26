@@ -9,6 +9,10 @@ h1 {
   font-family: 'Yatra One', cursive;
 }
 
+label {
+  font-size: 1.4em;
+}
+
 
 .board {
   background-image: url('../img/clue_board.svg');
@@ -43,11 +47,6 @@ h1 {
 
 }
 
-.card {
-  display: inline-block;
-  height: auto;
-}
-
 .card-title {
   font-size: 90%;
   text-align: center;
@@ -62,12 +61,52 @@ h1 {
   margin-top: 10px;
 }
 
+.card {
+  width: 70%;
+  padding: 15px;
+  background-color: rgba(170, 124, 150, 0.9);
+  border-color: rgba(170, 124, 150, 0.9);
+  color: white;
+  box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
+  -moz-box-shadow:    4px 5px 6px rgba(34,34,34,0.6);
+  -webkit-box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
+}
+
+.playerCard {
+  display: inline-block;
+  height: auto;
+  width: auto;
+}
+
+.playerCardModal {
+  width: 20%;
+}
+
 .homePage {
   text-align: center;
-  padding-top: 40%;
+  padding-top: 30vh;
+  padding-left: 15vw;
 }
 
 .playerSelect {
   text-align: center;
-  padding-top: 30%;
+  padding-top: 15vh;
+  padding-left: 15vw;
+}
+
+#playerSelectHeader {
+  font-size: 3em;
+}
+
+.playerGuess {
+  text-align: center;
+  padding-top: 20vh;
+  padding-left: 15vw;
+}
+
+#makeGuessHeader {
+  font-size: 2.5em;
+  color: white;
+  padding-left: 0vw;
+  width: 70%;
 }

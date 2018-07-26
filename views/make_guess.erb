@@ -1,19 +1,27 @@
-<div class="container">
-  <form class="" action="/players/<%= @player.id %>/make_guess" method="post">
-    <label for="room">Room</label>
-    <input type="text" name="room" value="<%= @room.space_type %>" placeholder="<%= @room.space_type %>">
-    <label for="killer">Killer</label>
-    <select name="killer" type='text' class="form-control">
-      <% @cats.shuffle.each do |cat| %>
-      <option value="<%= cat.card_name %>"><%= cat.card_name %></option>
-      <% end %>
-    </select>
-    <label for="weapon">Weapon</label>
-    <select name="weapon" type='text' class="form-control">
-      <% @weapons.shuffle.each do |weapon| %>
-      <option value="<%= weapon.card_name %>"><%= weapon.card_name %></option>
-      <% end %>
-    </select>
-    <button class="btn btn-primary" type="submit">Guess</button>
-  </form>
+<div class="container playerGuess">
+  <p id="makeGuessHeader">Make a Guess</p>
+  <div class="card">
+    <form class="" action="/players/<%= @player.id %>/make_guess" method="post">
+
+      <label for="room">Room</label>
+      <select class="form-control" name="room" type="text">
+        <option  value="<%= @room.space_type %>" placeholder="<%= @room.space_type %>"><%= @room.space_type %></option>
+      </select>
+
+
+      <label for="killer">Killer</label>
+      <select name="killer" type='text' class="form-control">
+        <% @cats.shuffle.each do |cat| %>
+        <option value="<%= cat.card_name %>"><%= cat.card_name %></option>
+        <% end %>
+      </select>
+      <label for="weapon">Weapon</label>
+      <select name="weapon" type='text' class="form-control">
+        <% @weapons.shuffle.each do |weapon| %>
+        <option value="<%= weapon.card_name %>"><%= weapon.card_name %></option>
+        <% end %>
+      </select>
+      <button class="btn btn-primary" type="submit">Guess</button>
+    </form>
+  </div>
 </div>
