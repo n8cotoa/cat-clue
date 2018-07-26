@@ -35,6 +35,8 @@ end
 
 get('/board') do
   @spaces = Space.all.order(:id)
+  @rooms = ["A1", "A2", "B1", "B2", "A5", "A6", "B5", "B6", "A9", "A10", "B9", "B10", "E1", "E2", "F1", "F2", "E9", "E10", "F9", "F10", "I1", "I2", "J1", "J2", "I5", "I6", "J5", "J6", "I9", "I10", "J9", "J10"]
+  @final_room = ["E5", "E6", "F5", "F6"]
   @player = Player.all.where(turn: 't').first
   @cards = Card.all.where(player_id: @player.id)
   erb(:board)
@@ -69,6 +71,31 @@ get '/players/:id/make_guess' do
   @weapons = Card.all.where(card_type: 'Weapon')
   erb(:make_guess)
 end
+
+get '/players/:id/final_guess' do
+  @current_player = Player.all.where(turn: 't').first
+  @rooms = Card.all.where(card_type: 'Room')
+  @cats = Card.all.where(card_type: 'Cat')
+  @weapons = Card.all.where(card_type: 'Weapon')
+  erb(:final_guess)
+end
+
+post '/players/:id/final_guess' do
+  @current_player = Player.all.where(turn: 't').first
+  id = params["id"].to_i
+  cat = params['killer']
+  weapon = params['weapon']
+  room = params['room']
+  if @current_player.final_guess(cat, weapon, room)
+    erb(:win)
+  else
+    @current_player.end_turn
+    player_to_destory = Player.find(id)
+    space_update = Space.find_by(player_id: id)
+    space_update.update({:player_id => nil})
+    player_to_destory.destroy
+    erb(:lose)
+  end
 
 post '/players/:id/make_guess' do
   current_player = Player.all.where(turn: 't').first
