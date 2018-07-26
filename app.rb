@@ -111,5 +111,5 @@ end
 get '/players/next' do
   current_player = Player.all.where(turn: 't').first
   current_player.end_turn
-  redirect back
+  redirect '/board'
 end
