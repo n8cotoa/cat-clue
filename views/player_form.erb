@@ -5,7 +5,7 @@
   <div class="form-group">
     <label for="player1">Player 1 Select Character:</label>
     <select name="player1" type='text' class="form-control">
-      <% @characters.each do |character| %>
+      <% @characters.shuffle.each do |character| %>
       <option value="<%= character.card_name %>"><%= character.card_name %></option>
       <% end %>
     </select>
@@ -13,7 +13,7 @@
   <div class="form-group">
     <label for="player2">Player 2 Select Character:</label>
     <select name="player2" type='text' class="form-control">
-      <% @characters.each do |character| %>
+      <% @characters.shuffle.each do |character| %>
       <option value="<%= character.card_name %>"><%= character.card_name %></option>
       <% end %>
     </select>
@@ -21,7 +21,7 @@
   <div class="form-group">
     <label for="player3">Player 3 Select Character:</label>
     <select name="player3" type='text' class="form-control">
-      <% @characters.each do |character| %>
+      <% @characters.shuffle.each do |character| %>
       <option value="<%= character.card_name %>"><%= character.card_name %></option>
       <% end %>
     </select>
@@ -29,7 +29,7 @@
   <div class="form-group">
     <label for="player4">Player 4 Select Character:</label>
     <select name="player4" type='text' class="form-control">
-      <% @characters.each do |character| %>
+      <% @characters.shuffle.each do |character| %>
       <option value="<%= character.card_name %>"><%= character.card_name %></option>
       <% end %>
     </select>
