@@ -20,48 +20,6 @@ class Player < ActiveRecord::Base
     roll
   end
 
-  # def move(new_coords)
-  #   kitchen = ['A1', 'A2', 'B1', 'B2']
-  #   hall = ['A5', 'A6', 'B5', 'B6']
-  #   lounge = ['A9', 'A10', 'B9', 'B10']
-  #   library = ['E1', 'E2', 'F1', 'F2']
-  #   cellar = ['E5', 'E6', 'F5', 'F6']
-  #   pool = ['E9', 'E10', 'F9', 'F10']
-  #   laboratory = ['I1', 'I2', 'J1', 'J2']
-  #   dining = ['I5', 'I6', 'J5', 'J6']
-  #   study = ['I9', 'I10', 'J9', 'J10']
-  #   rooms = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
-  #   guess_allowed = false ## this will be the return value?
-  #   new_space = Space.where(coordinates: new_coords).first
-  #   doors = Space.where('space_type LIKE ?', '%Door').all
-  #   original_space = Space.find_by(player_id: self.id)
-  #   original_coords = original_space.coordinates
-  #   available_spaces = self.available_spaces(original_coords)
-  #   roll = self.dice_roll
-  #   ## available_spaces does include the doors, but it won't include new_space if new_space is a room
-  #   binding.pry
-  #   new_space_type = new_space.space_type ## expect a string 'Kitchen' or 'Kitchen Door'
-  #   if new_space_type =! nil
-  #
-  #   if ((roll > 0) && (available_spaces.include?(new_space.coordinates))) || ## if roll > 0 && new_space is the specific room associated with that door
-  #     ## rooms.include?(new_space.coordinates)) ## If new_space is in available_spaces, and new_space is included in room
-  #     if (doors.include?(original_space)) && (rooms.include?(new_space.coordinates)) ## If they're on a door, and new_space is a room, then move them into the room (update new_space), change guess_allowed = true.
-  #       new_space.update(player_id: self.id)
-  #       original_space.update(player_id: nil)
-  #       guess_allowed = true
-  #       roll -= 1
-  #       self.update(dice_roll: roll)
-  #     else ## i.e. new_space is NOT a room
-  #       new_space.update(player_id: self.id)
-  #       original_space.update(player_id: nil)
-  #       roll -= 1
-  #       self.update(dice_roll: roll)
-  #     end
-  #   # else ## i.e. They have no rolls left or they didn't click an adjacent, available space
-  #   end
-  #   guess_allowed
-  # end
-
   def move(new_coords)
     kitchen = ['A1', 'A2', 'B1', 'B2']
     hall = ['A5', 'A6', 'B5', 'B6']
@@ -73,11 +31,6 @@ class Player < ActiveRecord::Base
     dining = ['I5', 'I6', 'J5', 'J6']
     study = ['I9', 'I10', 'J9', 'J10']
     all_room_coords = kitchen + hall + lounge + library + cellar + pool + laboratory + dining + study
-    # all_room_spaces = []
-    # all_room_coords.each do |coords|
-    #   room_space = Space.find_by(coordinates: coords)
-    #   all_room_spaces.push(room_space)
-    # end
     roll = self.dice_roll
     original_space = Space.find_by(player_id: self.id)
     original_coords = original_space.coordinates
@@ -95,56 +48,6 @@ class Player < ActiveRecord::Base
       end
     end
   end
-
-  # def move(new_coords)
-  #   # Setup
-  #   roll = self.dice_roll
-  #   original_space = Space.find_by(player_id: self.id)
-  #   original_coords = original_space.coordinates
-  #   available_spaces = self.available_spaces(original_coords)
-  #   new_space = Space.find_by(coordinates: new_coords)
-  #   doors = Space.where('space_type LIKE ?', '%Door').all
-  #   rooms_hash = {0 => 'Kitchen', 1 => 'Hall', 2 => 'Lounge', 3 => 'Library', 4 => 'Cellar', 5 => 'Pool Room', 6 => 'Laboratoy', 7 => 'Dining Room', 8 => 'Study'}
-  #   kitchen = ['A1', 'A2', 'B1', 'B2']
-  #   hall = ['A5', 'A6', 'B5', 'B6']
-  #   lounge = ['A9', 'A10', 'B9', 'B10']
-  #   library = ['E1', 'E2', 'F1', 'F2']
-  #   cellar = ['E5', 'E6', 'F5', 'F6']
-  #   pool = ['E9', 'E10', 'F9', 'F10']
-  #   laboratory = ['I1', 'I2', 'J1', 'J2']
-  #   dining = ['I5', 'I6', 'J5', 'J6']
-  #   study = ['I9', 'I10', 'J9', 'J10']
-  #   rooms = [kitchen, hall, lounge, library, cellar, pool, laboratory, dining, study]
-  #   # If statements
-  #   if roll > 0
-  #     if available_spaces.include?(new_space.coordinates)
-  #       if doors.include?(original_space)
-  #         binding.pry
-  #         door_string = original_space.space_type
-  #         nearby_room = door_string.split(" Door")[0]
-  #         room_index = rooms_hash.index(nearby_room)
-  #         nearby_room_spaces = rooms[room_index]
-  #         if nearby_room_spaces.include?(new_space)
-  #           new_space.update(player_id: self.id)
-  #           original_space.update(player_id: nil)
-  #           guess_allowed = true
-  #           roll -= 1
-  #           self.update(dice_roll: roll)
-  #         else # new_space is not in nearby_room
-  #           new_space.update(player_id: self.id)
-  #           original_space.update(player_id: nil)
-  #           roll -= 1
-  #           self.update(dice_roll: roll)
-  #         end
-  #       else # if current space is not a door
-  #         new_space.update(player_id: self.id)
-  #         original_space.update(player_id: nil)
-  #         roll -= 1
-  #         self.update(dice_roll: roll)
-  #       end
-  #     end
-  #   end
-  # end
 
   def available_spaces(current_coords)
     ## Setup
@@ -198,11 +101,7 @@ class Player < ActiveRecord::Base
           available_coords.push(space.coordinates)
         end
       end
-    elsif doors.include?(current_space) ## could dry up by not specifying which room. As long as the requirement is there for new_spaces to be one away, available_spaces only needs to be empty_halls + empty_rooms. Rooms don't need to take into account which room is nearby
-      # nearby_room = current_space.space_type.split(" Door")[0]
-      # room_index = rooms_hash.index(nearby_room)
-      # nearby_room_spaces = rooms[room_index]
-      # empty_nearby_room_spaces = nearby_room_spaces & empty_room_spaces
+    elsif doors.include?(current_space)
       available_spaces = empty_halls + empty_room_spaces
       available_spaces.each do |space|
         space_x_axis = space.coordinates.split('', 2)[0]
