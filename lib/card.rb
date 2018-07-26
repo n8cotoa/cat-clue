@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-
+  has_and_belongs_to_many :players
   def self.murder
     card_types = ['Cat', 'Weapon', 'Room']
     card_types.each do |card_type|

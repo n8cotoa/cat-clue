@@ -64,6 +64,41 @@ get '/players/:id/checkcards' do
   erb(:checkcards)
 end
 
+get '/players/:id/scorecard' do
+  id = params[:id].to_i
+  @player = Player.find(id)
+  @cards = Card.all
+  erb(:scorecard)
+end
+
+post '/players/:id/scorecard' do
+  @player = Player.find(params.fetch(:id))
+  if params.key?('card_ids')
+    card_ids = params.fetch("card_ids")
+    card_ids.each do |card_id|
+      card = Card.find(card_id.to_i)
+      @player.cards.push(card)
+    end
+    redirect back
+  else
+    redirect back
+  end
+end
+
+patch '/players/:id/scorecard' do
+  @player = Player.find(params.fetch(:id))
+  if params.key?('cards_id')
+    card_ids = params.fetch("card_ids")
+    card_ids.each do |card_id|
+      card = Card.find(card_id.to_i)
+      @player.cards.destroy(card)
+    end
+    redirect back
+  else
+    redirect back
+  end
+end
+
 get '/players/:id/make_guess' do
   current_player = Player.all.where(turn: 't').first
   @room = Space.find_by(player_id: current_player)
