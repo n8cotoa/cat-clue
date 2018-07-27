@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_23_232615) do
+ActiveRecord::Schema.define(version: 2018_07_25_183518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,19 @@ ActiveRecord::Schema.define(version: 2018_07_23_232615) do
     t.integer "player_id"
   end
 
+  create_table "cards_players", id: false, force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.bigint "player_id", null: false
+    t.index ["card_id"], name: "index_cards_players_on_card_id"
+    t.index ["player_id"], name: "index_cards_players_on_player_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.boolean "turn"
     t.integer "dice_roll"
     t.string "guess"
     t.string "name"
+    t.string "image"
   end
 
   create_table "spaces", force: :cascade do |t|

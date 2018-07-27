@@ -1,0 +1,23 @@
+<div class="container">
+  <form class="" action="/players/<%= @current_player.id %>/final_guess" method="post">
+    <label for="room">Room</label>
+    <select name="room" type='text' class="form-control">
+      <% @rooms.shuffle.each do |room| %>
+      <option value="<%= room.card_name %>"><%= room.card_name %></option>
+      <% end %>
+    </select>
+    <label for="killer">Killer</label>
+    <select name="killer" type='text' class="form-control">
+      <% @cats.shuffle.each do |cat| %>
+      <option value="<%= cat.card_name %>"><%= cat.card_name %></option>
+      <% end %>
+    </select>
+    <label for="weapon">Weapon</label>
+    <select name="weapon" type='text' class="form-control">
+      <% @weapons.shuffle.each do |weapon| %>
+      <option value="<%= weapon.card_name %>"><%= weapon.card_name %></option>
+      <% end %>
+    </select>
+    <button type="submit">Guess</button>
+  </form>
+</div>

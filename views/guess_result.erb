@@ -1,0 +1,33 @@
+<div class="container">
+  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#showGuess">Reveal Guess</button>
+</div>
+<div class="container">
+  <a href="/players/<%= @player.id%>/scorecard"><span class="btn btn-primary">Scorecard</span></a>
+</div>
+<div class="modal fade" id="showGuess" tabindex="-1" role="dialog" aria-labelledby="warningdeletemodal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="warningdeletemodal">Here is one of your opponents cards:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="player_cards">
+          <div class="">
+            <div class="card-body card playerCard">
+              <h5 class="card-title"><%= @found_card.card_name %></h5>
+              <img class="card-img-bottom" src="<%= url(@found_card.image) %>" alt="Card Image">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="/players/next"><button type="button" class="btn btn-danger">Back to Board</button></a>
+
+      </div>
+    </div>
+  </div>
+</div>

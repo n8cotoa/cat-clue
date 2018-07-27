@@ -1,0 +1,112 @@
+body {
+  background-color: #63989D;
+  background-image: url('../img/cats.svg');
+  background-size: cover;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+  font-family: 'Yatra One', cursive;
+}
+
+label {
+  font-size: 1.4em;
+}
+
+
+.board {
+  background-image: url('../img/clue_board.svg');
+  background-size: cover;
+  height: 70vw;
+  width: 70vw;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+
+.row {
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  margin: 0;
+  height: 7vw;
+}
+
+.col {
+  padding: 0;
+  width: 7vw;
+}
+
+.playerView {
+  float: right;
+}
+
+.player-piece {
+  z-index: 10;
+  width: 6vw;
+  height: 6vw;
+
+}
+
+.card-title {
+  font-size: 90%;
+  text-align: center;
+}
+
+.card-img-bottom {
+  width: 9vw;
+  height: auto;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.card {
+  width: 70%;
+  padding: 15px;
+  background-color: rgba(170, 124, 150, 0.9);
+  border-color: rgba(170, 124, 150, 0.9);
+  color: white;
+  box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
+  -moz-box-shadow:    4px 5px 6px rgba(34,34,34,0.6);
+  -webkit-box-shadow: 4px 5px 6px rgba(34,34,34,0.6);
+}
+
+.playerCard {
+  display: inline-block;
+  height: auto;
+  width: auto;
+}
+
+.playerCardModal {
+  width: 20%;
+}
+
+.homePage {
+  text-align: center;
+  padding-top: 30vh;
+  padding-left: 15vw;
+}
+
+.playerSelect {
+  text-align: center;
+  padding-top: 15vh;
+  padding-left: 15vw;
+}
+
+#playerSelectHeader {
+  font-size: 3em;
+}
+
+.playerGuess {
+  text-align: center;
+  padding-top: 20vh;
+  padding-left: 15vw;
+}
+
+#makeGuessHeader {
+  font-size: 2.5em;
+  color: white;
+  padding-left: 0vw;
+  width: 70%;
+}

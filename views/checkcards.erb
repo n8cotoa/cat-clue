@@ -1,0 +1,16 @@
+<h2> <%= @player.name %> </h2>
+
+<h4>Here are your cards:</h4>
+
+<div class="player_cards">
+<% @player_cards.each do |card| %>
+  <div class="card playerCard">
+    <div class="card-body">
+      <h5 class="card-title"><%= card.card_name %></h5>
+    </div>
+    <img class="card-img-bottom" src="<%= url(card.image) %>" alt="Card Image">
+  </div>
+<% end %>
+</div>
+
+<a href="/board"><span class="btn btn-danger">Home</span></a>
