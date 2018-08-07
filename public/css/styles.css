@@ -115,3 +115,14 @@ label {
   padding-left: 0vw;
   width: 70%;
 }
+
+@media screen and (max-width: 500px) /* Mobile */ {
+  .playerView {
+    float: none;
+  }
+  .board {
+    float: none;
+    height: 100vw;
+    width: 100vw;
+  }
+}
