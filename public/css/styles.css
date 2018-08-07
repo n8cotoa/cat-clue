@@ -46,7 +46,12 @@ label {
   height: 6vw;
 
 }
+.containInfo {
+  box-sizing: border-box;
+  text-align: center;
+  align-self: auto;
 
+}
 .card-title {
   font-size: 90%;
   text-align: center;
@@ -89,13 +94,12 @@ label {
 }
 
 .playerSelect {
-  text-align: center;
-  padding-top: 15vh;
-  padding-left: 15vw;
+  margin-top: 15vw;
 }
 
 #playerSelectHeader {
   font-size: 3em;
+  text-align: center;
 }
 
 .playerGuess {
