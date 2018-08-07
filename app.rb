@@ -15,7 +15,6 @@ get '/start' do
 end
 
 post '/start/new_players' do
-  Game.full_reset #Take this out when deploying application
   player1 = params.fetch('player1')
   player2 = params.fetch('player2')
   player3 = params.fetch('player3')
