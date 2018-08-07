@@ -1,5 +1,3 @@
-require('pry')
-
 #Seeds database with spaces and cards
 
 #builds borad game spaces in database
