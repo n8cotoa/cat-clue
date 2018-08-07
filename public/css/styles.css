@@ -116,7 +116,7 @@ label {
   width: 70%;
 }
 
-@media screen and (max-width: 500px) /* Mobile */ {
+@media screen and (max-width: 550px) /* Mobile */ {
   .playerView {
     float: none;
   }
