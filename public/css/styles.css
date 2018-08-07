@@ -89,8 +89,9 @@ label {
 
 .homePage {
   text-align: center;
-  padding-top: 30vh;
-  padding-left: 15vw;
+  margin-top: 30vh;
+  margin-left: 15vw;
+  padding: 20px;
 }
 
 .playerSelect {
