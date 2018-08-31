@@ -5,7 +5,14 @@
 #### Reese Glasscock, Nate Cottle, Annie Shin, Rita Bennett-Chew
 
 ## Description
+
 A recreation of the classic game 'Clue' using Ruby, Sinatra, and ActiveRecord
+
+## My Contribution
+
+I built the seed file for the psql database which populates the database with the board game spaces, rooms, and doorways, as well as weapon, player, and room cards.
+
+I worked on the card functionality - creating the 'murder mystery', dealing the cards to players, displaying player cards, and displaying one of the correct card guesses. I also built the routes for the application and helped with player piece movement on the board.
 
 ## Setup Requirements
 
