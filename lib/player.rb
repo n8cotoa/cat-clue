@@ -41,15 +41,15 @@ class Player < ActiveRecord::Base
     available_spaces = self.available_spaces(original_coords)
     new_space = Space.find_by(coordinates: new_coords)
     if !roll.nil? && roll > 0
-        if available_spaces.include?(new_space.coordinates)
-          new_space.update(player_id: self.id)
-          original_space.update(player_id: nil)
-          roll -= 1
-          self.update(dice_roll: roll)
-        end
-        if all_room_coords.include?(new_coords)
-          guess_allowed = true
-        end
+      if available_spaces.include?(new_space.coordinates)
+        new_space.update(player_id: self.id)
+        original_space.update(player_id: nil)
+        roll -= 1
+        self.update(dice_roll: roll)
+      end
+      if all_room_coords.include?(new_coords)
+        guess_allowed = true
+      end
     end
   end
 
