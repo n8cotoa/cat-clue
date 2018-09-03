@@ -39,7 +39,7 @@ class Player < ActiveRecord::Base
     original_coords = original_space.coordinates
     available_spaces = self.available_spaces(original_coords)
     new_space = Space.find_by(coordinates: new_coords)
-    if roll > 0
+    if !roll.nil? && roll > 0
       if available_spaces.include?(new_space.coordinates)
         new_space.update(player_id: self.id)
         original_space.update(player_id: nil)

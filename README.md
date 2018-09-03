@@ -3,6 +3,7 @@
 #### Epicodus: Ruby Course: Group Project Week of Jul 23rd - July 26
 
 ## Description
+
 A recreation of the classic game 'Clue' using Ruby, Sinatra, and ActiveRecord
 
 ### Installing
@@ -26,6 +27,9 @@ You will then need to create the databases locally on your system.
 ```
 rake db:migrate
 ```
+
+## Setup Requirements
+
 
 To run the application you will now need to have sinatra also installed on your system. You can then go to the project folder within terminal and run the command below to have the project start
 
