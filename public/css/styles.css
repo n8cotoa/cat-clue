@@ -44,9 +44,14 @@ label {
   z-index: 10;
   width: 6vw;
   height: 6vw;
-
 }
 
+.containInfo {
+  box-sizing: border-box;
+  text-align: center;
+  align-self: auto;
+
+}
 .card-title {
   font-size: 90%;
   text-align: center;
@@ -84,18 +89,18 @@ label {
 
 .homePage {
   text-align: center;
-  padding-top: 30vh;
-  padding-left: 15vw;
+  margin-top: 30vh;
+  margin-left: 15vw;
+  padding: 20px;
 }
 
 .playerSelect {
-  text-align: center;
-  padding-top: 15vh;
-  padding-left: 15vw;
+  margin-top: 15vw;
 }
 
 #playerSelectHeader {
   font-size: 3em;
+  text-align: center;
 }
 
 .playerGuess {
@@ -109,4 +114,26 @@ label {
   color: white;
   padding-left: 0vw;
   width: 70%;
+}
+
+@media screen and (max-width: 550px) /* Mobile */ {
+  .playerView {
+    float: none;
+  }
+  .board {
+    float: none;
+    height: 100vw;
+    width: 100vw;
+  }
+  .row {
+    height: 10vw;
+  }
+  .col {
+    width: 10vw;
+  }
+  .player-piece {
+    z-index: 10;
+    width: 10vw;
+    height: 10vw;
+  }
 }

@@ -1,8 +1,5 @@
-<div class="container">
+<div class="container centerButtonGuessResult">
   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#showGuess">Reveal Guess</button>
-</div>
-<div class="container">
-  <a href="/players/<%= @player.id%>/scorecard"><span class="btn btn-primary">Scorecard</span></a>
 </div>
 <div class="modal fade" id="showGuess" tabindex="-1" role="dialog" aria-labelledby="warningdeletemodal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -25,7 +22,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="/players/next"><button type="button" class="btn btn-danger">Back to Board</button></a>
+        <a href="/board"><button type="button" class="btn btn-danger">Back to Board</button></a>
 
       </div>
     </div>
