@@ -6,6 +6,7 @@ gem("rake")
 gem("pg")
 gem("sinatra")
 gem('thin')
+gem "rack", ">= 2.0.6"
 
 group(:test) do
   gem("rspec")
